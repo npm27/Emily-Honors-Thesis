@@ -6,12 +6,12 @@ Top=0
 Width=845
 Height=300
 [Object1]
-Name=Recall2
+Name=Recall1
 WindowState=0
-Left=192
-Top=192
+Left=160
+Top=160
 Width=1251
 Height=471
 [Object2]
-Name=Recall1
+Name=Recall2
 WindowState=2
