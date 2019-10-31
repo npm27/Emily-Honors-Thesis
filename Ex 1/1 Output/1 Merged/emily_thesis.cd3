@@ -146,6 +146,8 @@ Rword2.RESP,3,0
 Rword2.RT,3,1
 pword8.RESP,3,0
 pword8.RT,3,0
+pword9.RESP,3,0
+pword9.RT,3,0
 pword10.RESP,3,0
 pword10.RT,3,0
 Procedure[Trial],3,0
@@ -197,6 +199,4 @@ pword9.DurationError,3,1
 pword9.OnsetDelay,3,1
 pword9.OnsetTime,3,1
 pword9.OnsetToOnsetTime,3,1
-pword9.RESP,3,1
-pword9.RT,3,1
 pword9.RTTime,3,1
