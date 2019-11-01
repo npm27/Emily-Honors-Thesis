@@ -8,7 +8,7 @@ library(dplyr)
 #Need to get pword 7 and pword 8 from e-prime file
 
 #read in data
-dat = read.csv("output 10_24_raw.csv")
+dat = read.csv("raw 10_31 2.csv") #switch this out for the most recent file
 
 summary(dat)
 table(dat$ExperimentName)
@@ -29,6 +29,9 @@ A2 = subset(dat,
 
 A = rbind(A, A1, A2)
 
+##drop study proc 8's
+A = A[ , -c(16, 17)]
+
 #Now do B
 B = subset(dat,
            dat$ExperimentName == "READ_JOL B")
@@ -38,6 +41,9 @@ B2 = subset(dat,
             dat$ExperimentName == "RL_JOL B")
 
 B = rbind(B, B1, B2)
+
+##drop study proc 10's
+B = B[ , -c(20, 21)]
 
 #next c
 C = subset(dat,
@@ -49,6 +55,9 @@ C2 = subset(dat,
 
 C = rbind(C, C1, C2)
 
+##drop study proc 10's
+C = C[ , -c(20, 21)]
+
 #Finally, D
 D = subset(dat,
            dat$ExperimentName == "READ_JOL D")
@@ -58,6 +67,9 @@ D2 = subset(dat,
             dat$ExperimentName == "RL_JOL D")
 
 D = rbind(D, D1, D2)
+
+##drop study proc 10's
+D = D[ , -c(20, 21)]
 
 ####Start with version A!####
 ##Now remove buffer trials
@@ -113,43 +125,89 @@ A.recall = subset(A,
 A.JOL = subset(A,
                A$Type == "JOL")
 
-##combine columns
-A = cbind(A.JOL, A.recall)
 
-#remove NA columns
-summary(A)
+##split JOL and recall by block
+#JOLs
 
-A = A[ , -c(13:15, 26:29)]
+#drop unused columns (recall)
+A.JOL = A.JOL[ , -c(13:15)]
 
-#subset on block
-table(A$Block)
+#now subset
+A1 = subset(A.JOL,
+            A.JOL$Block == 1)
+A2 = subset(A.JOL,
+            A.JOL$Block == 2)
 
-A1 = subset(A,
-            A$Block == 1)
-A2 = subset(A,
-            A$Block == 2)
+#Recall
+#drop jol columns
+A.recall = A.recall[ , -c(9:12, 16:19)]
 
-#rename columns
-colnames(A1)[9] = "JOL"
-colnames(A1)[10] = "JOL_RT"
-colnames(A1)[20] = "Recall_prompt"
-colnames(A1)[23] = "Response"
+#subset
+A3 = subset(A.recall,
+            A.recall$Block == 1)
+A4 = subset(A.recall,
+            A.recall$Block == 2)
 
-#cut unused columns
-A1 = A1[ , -c(11:12, 15:19, 21, 24:27)]
+#now get all jols and RTs/ recall responses into one column
+#time for more subsetting!
 
-#now do the same for A2
-#rename columns
-colnames(A2)[11] = "JOL"
-colnames(A2)[12] = "JOL_RT"
-colnames(A2)[20] = "Recall_prompt"
-colnames(A2)[25] = "Response"
+##block 1
+#study proc 3
+proc3 = subset(A1,
+               A1$Procedure.Trial. == "StudyProc3")
+#study proc 7
+proc7 = subset(A1,
+               A1$Procedure.Trial. == "StudyProc7")
 
-#cut unused columns
-A2 = A2[ , -c(9:10, 15:19, 21, 23:24, 26:27)]
+##block 2
+#study proc 5
+proc5 = subset(A2,
+               A2$Procedure.Trial. == "StudyProc5")
 
-##put the two blocks back together
-A = rbind(A1, A2)
+#study proc 8
+proc8 = subset(A2,
+               A2$Procedure.Trial. == "StudyProc8")
+
+##now start removing unused columns
+#proc 3
+proc3 = proc3[ , -c(11:16)]
+colnames(proc3)[9:10] = c("JOL", "RT")
+
+#proc 5
+proc5 = proc5[ , -c(9:10, 13:16)]
+colnames(proc5)[9:10] = c("JOL", "RT")
+
+#proc 7
+proc7 = proc7[ , -c(9:12, 15:16)]
+colnames(proc7)[9:10] = c("JOL", "RT")
+
+#proc 8
+proc8 = proc8[ , -c(9:14)]
+colnames(proc8)[9:10] = c("JOL", "RT")
+
+##PUT THEM BACK TOGETHER!
+JOLs = rbind(proc3, proc7, proc5, proc8)
+
+#sort
+JOLs = JOLs[order(JOLs$ListNum, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Subject, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
+
+#recall
+recall2 = A4[ - c(7, 9, 10)]
+colnames(recall2)[8] = "Response" 
+
+recall1 = A3[ - c(7, 10, 11)]
+colnames(recall1)[8] = "Response" 
+
+##put back together
+recall = rbind(recall1, recall2)
+
+#now combine JOLs and recall
+combinedA = cbind(JOLs, recall)
+combinedA = combinedA[ , -c(13:16)]
+
+####MAKE EVERYTHING BELOW MATCH A####
 
 ####Now do the same for version B####
 ##First remove buffer trials
@@ -205,43 +263,86 @@ B.recall = subset(B,
 B.JOL = subset(B,
                B$Type == "JOL")
 
-##combine columns
-B = cbind(B.JOL, B.recall)
+##split JOL and recall by block
+#JOLs
 
-#remove NA columns
-summary(B)
+#drop unused columns (recall)
+B.JOL = B.JOL[ , -c(13:15)]
 
-B = B[ , -c(13:15, 26:29)]
+#now subset
+B1 = subset(B.JOL,
+            B.JOL$Block == 1)
+B2 = subset(B.JOL,
+            B.JOL$Block == 2)
 
-#subset on block
-table(B$Block)
+#Recall
+#drop jol columns
+B.recall = B.recall[ , -c(9:12, 16:19)]
 
-B1 = subset(B,
-            B$Block == 1)
-B2 = subset(B,
-            A$Block == 2)
+#subset
+B3 = subset(B.recall,
+            B.recall$Block == 1)
+B4 = subset(B.recall,
+            B.recall$Block == 2)
 
-#rename columns
-colnames(B1)[9] = "JOL"
-colnames(B1)[10] = "JOL_RT"
-colnames(B1)[20] = "Recall_prompt"
-colnames(B1)[23] = "Response"
+#now get all jols and RTs/ recall responses into one column
+#time for more subsetting!
 
-#cut unused columns
-B1 = B1[ , -c(11:12, 15:19, 21, 24:27)]
+##block 1
+#study proc 3
+proc3 = subset(B1,
+               B1$Procedure.Trial. == "StudyProc3")
+#study proc 7
+proc7 = subset(B1,
+               B1$Procedure.Trial. == "StudyProc7")
 
-#now do the same for B2 SOMETHING IS OFF BROUND HERE
-#rename columns
-colnames(B2)[11] = "JOL"
-colnames(B2)[12] = "JOL_RT"
-colnames(B2)[20] = "Recall_prompt"
-colnames(B2)[25] = "Response"
+##block 2
+#study proc 5
+proc5 = subset(B2,
+               B2$Procedure.Trial. == "StudyProc5")
 
-#cut unused columns
-B2 = B2[ , -c(9:10, 15:19, 21, 23:24, 26:27)]
+#study proc 8
+proc8 = subset(B2,
+               B2$Procedure.Trial. == "StudyProc8")
 
-##put the two blocks back together
-B = rbind(B1, B2)
+##now start removing unused columns
+#proc 3
+proc3 = proc3[ , -c(11:16)]
+colnames(proc3)[9:10] = c("JOL", "RT")
+
+#proc 5
+proc5 = proc5[ , -c(9:10, 13:16)]
+colnames(proc5)[9:10] = c("JOL", "RT")
+
+#proc 7
+proc7 = proc7[ , -c(9:12, 15:16)]
+colnames(proc7)[9:10] = c("JOL", "RT")
+
+#proc 8
+proc8 = proc8[ , -c(9:14)]
+colnames(proc8)[9:10] = c("JOL", "RT")
+
+##PUT THEM BACK TOGETHER!
+JOLs = rbind(proc3, proc7, proc5, proc8)
+
+#sort
+JOLs = JOLs[order(JOLs$ListNum, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Subject, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
+
+#recall
+recall2 = B4[ - c(7, 9, 10)]
+colnames(recall2)[8] = "Response" 
+
+recall1 = B3[ - c(7, 10, 11)]
+colnames(recall1)[8] = "Response" 
+
+##put back together
+recall = rbind(recall1, recall2)
+
+#now combine JOLs and recall
+combinedB = cbind(JOLs, recall)
+combinedB = combinedB[ , -c(13:16)]
 
 ####Now do the same for version C####
 ##First remove buffer trials
@@ -297,43 +398,86 @@ C.recall = subset(C,
 C.JOL = subset(C,
                C$Type == "JOL")
 
-##combine columns
-C = cbind(C.JOL, C.recall)
+##split JOL and recall by block
+#JOLs
 
-#remove NA columns
-summary(C)
+#drop unused columns (recall)
+C.JOL = C.JOL[ , -c(13:15)]
 
-C = C[ , -c(13:15, 26:29)]
+#now subset
+C1 = subset(C.JOL,
+            C.JOL$Block == 1)
+C2 = subset(C.JOL,
+            C.JOL$Block == 2)
 
-#subset on block
-table(C$Block)
+#Recall
+#drop jol columns
+C.recall = C.recall[ , -c(9:12, 16:19)]
 
-C1 = subset(C,
-            C$Block == 1)
-C2 = subset(C,
-            C$Block == 2)
+#subset
+C3 = subset(C.recall,
+            C.recall$Block == 1)
+C4 = subset(C.recall,
+            C.recall$Block == 2)
 
-#rename columns
-colnames(C1)[9] = "JOL"
-colnames(C1)[10] = "JOL_RT"
-colnames(C1)[20] = "Recall_prompt"
-colnames(C1)[23] = "Response"
+#now get all jols and RTs/ recall responses into one column
+#time for more subsetting!
 
-#cut unused columns
-C1 = C1[ , -c(11:12, 15:19, 21, 24:27)]
+##block 1
+#study proc 3
+proc3 = subset(C1,
+               C1$Procedure.Trial. == "StudyProc3")
+#study proc 7
+proc7 = subset(C1,
+               C1$Procedure.Trial. == "StudyProc7")
 
-#now do the same for 
-#rename columns
-colnames(C2)[11] = "JOL"
-colnames(C2)[12] = "JOL_RT"
-colnames(C2)[20] = "Recall_prompt"
-colnames(C2)[25] = "Response"
+##block 2
+#study proc 5
+proc5 = subset(C2,
+               C2$Procedure.Trial. == "StudyProc5")
 
-#cut unused columns
-C2 = C2[ , -c(9:10, 15:19, 21, 23:24, 26:27)]
+#study proc 8
+proc8 = subset(C2,
+               C2$Procedure.Trial. == "StudyProc8")
 
-##put the two blocks back together
-C = rbind(C1, C2)
+##now start removing unused columns
+#proc 3
+proc3 = proc3[ , -c(11:16)]
+colnames(proc3)[9:10] = c("JOL", "RT")
+
+#proc 5
+proc5 = proc5[ , -c(9:10, 13:16)]
+colnames(proc5)[9:10] = c("JOL", "RT")
+
+#proc 7
+proc7 = proc7[ , -c(9:12, 15:16)]
+colnames(proc7)[9:10] = c("JOL", "RT")
+
+#proc 8
+proc8 = proc8[ , -c(9:14)]
+colnames(proc8)[9:10] = c("JOL", "RT")
+
+##PUT THEM BACK TOGETHER!
+JOLs = rbind(proc3, proc7, proc5, proc8)
+
+#sort
+JOLs = JOLs[order(JOLs$ListNum, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Subject, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
+
+#recall
+recall2 = C4[ - c(7, 9, 10)]
+colnames(recall2)[8] = "Response" 
+
+recall1 = C3[ - c(7, 10, 11)]
+colnames(recall1)[8] = "Response" 
+
+##put back together
+recall = rbind(recall1, recall2)
+
+#now combine JOLs and recall
+combinedC = cbind(JOLs, recall)
+combinedC = combinedC[ , -c(13:16)]
 
 ####Now do the same for D####
 ##First remove buffer trials
@@ -389,47 +533,91 @@ D.recall = subset(D,
 D.JOL = subset(D,
                D$Type == "JOL")
 
-##combine columns
-D = cbind(D.JOL, D.recall)
+##split JOL and recall by block
+#JOLs
 
-#remove NA columns
-summary(D)
+#drop unused columns (recall)
+D.JOL = D.JOL[ , -c(13:15)]
 
-D = D[ , -c(13:15, 26:29)]
+#now subset
+D1 = subset(D.JOL,
+            D.JOL$Block == 1)
+D2 = subset(D.JOL,
+            D.JOL$Block == 2)
 
-#subset on block
-table(D$Block)
+#Recall
+#drop jol columns
+D.recall = D.recall[ , -c(9:12, 16:19)]
 
-D1 = subset(D,
-            D$Block == 1)
-D2 = subset(D,
-            D$Block == 2)
+#subset
+D3 = subset(D.recall,
+            D.recall$Block == 1)
+D4 = subset(D.recall,
+            D.recall$Block == 2)
 
-#rename columns
-colnames(D1)[9] = "JOL"
-colnames(D1)[10] = "JOL_RT"
-colnames(D1)[20] = "Recall_prompt"
-colnames(D1)[23] = "Response"
+#now get all jols and RTs/ recall responses into one column
+#time for more subsetting!
 
-#cut unused columns
-D1 = D1[ , -c(11:12, 15:19, 21, 24:27)]
+##block 1
+#study proc 3
+proc3 = subset(D1,
+               D1$Procedure.Trial. == "StudyProc3")
+#study proc 7
+proc7 = subset(D1,
+               D1$Procedure.Trial. == "StudyProc7")
 
-#now do the same for 
-#rename columns
-colnames(D2)[11] = "JOL"
-colnames(D2)[12] = "JOL_RT"
-colnames(D2)[20] = "Recall_prompt"
-colnames(D2)[25] = "Response"
+##block 2
+#study proc 5
+proc5 = subset(D2,
+               D2$Procedure.Trial. == "StudyProc5")
 
-#cut unused columns
-D2 = D2[ , -c(9:10, 15:19, 21, 23:24, 26:27)]
+#study proc 8
+proc8 = subset(D2,
+               D2$Procedure.Trial. == "StudyProc8")
 
-##put the two blocks back together
-D = rbind(D1, D2)
+##now start removing unused columns
+#proc 3
+proc3 = proc3[ , -c(11:16)]
+colnames(proc3)[9:10] = c("JOL", "RT")
+
+#proc 5
+proc5 = proc5[ , -c(9:10, 13:16)]
+colnames(proc5)[9:10] = c("JOL", "RT")
+
+#proc 7
+proc7 = proc7[ , -c(9:12, 15:16)]
+colnames(proc7)[9:10] = c("JOL", "RT")
+
+#proc 8
+proc8 = proc8[ , -c(9:14)]
+colnames(proc8)[9:10] = c("JOL", "RT")
+
+##PUT THEM BACK TOGETHER!
+JOLs = rbind(proc3, proc7, proc5, proc8)
+
+#sort
+JOLs = JOLs[order(JOLs$ListNum, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Subject, decreasing = FALSE), ]
+JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
+
+#recall
+recall2 = D4[ - c(7, 9, 10)]
+colnames(recall2)[8] = "Response" 
+
+recall1 = D3[ - c(7, 10, 11)]
+colnames(recall1)[8] = "Response" 
+
+##put back together
+recall = rbind(recall1, recall2)
+
+#now combine JOLs and recall
+combinedD = cbind(JOLs, recall)
+combinedD = combinedD[ , -c(13:16)]
 
 ####Now put everything back together
-combined = rbind(A, B, C, D)
+combined = rbind(combinedA, combinedB, combinedC, combinedD)
 #combined = rbind(C, D)
 
 #Write to file
-write.csv(combined, file = "processed 10_24.csv", row.names = FALSE)
+#remove '#' from linie 623 to write output to a csv file
+#write.csv(combined, file = "processed 10_31.csv", row.names = FALSE) #change date on filename
