@@ -8,7 +8,7 @@ library(dplyr)
 #Need to get pword 7 and pword 8 from e-prime file
 
 #read in data
-dat = read.csv("raw 11_4.csv") #switch this out for the most recent file
+dat = read.csv("raw 10_31 2.csv") #switch this out for the most recent file
 
 summary(dat)
 table(dat$ExperimentName)
@@ -73,17 +73,22 @@ D = D[ , -c(20, 21)]
 
 ####Start with version A!####
 ##Now remove buffer trials
-A = subset(A,
-           A$ListNum > 5)
-summary(A)
+A$Direction = as.numeric(A$Direction)
+
+A.JOL3 = subset(A,
+       A$Direction != "1")
+
+A.JOL3$Direction = factor(A.JOL3$Direction,
+                     levels = c(2,3,4,5),
+                     labels = c("B", "F", "S", "U"))
 
 #add study or recall coding
 A.recall = subset(A,
                   A$Procedure.Trial. == "recallproc1" | A$Procedure.Trial. == "recallproc2")
-A.JOL1 = subset(A,
-                A$Procedure.Trial. == "StudyProc3" | A$Procedure.Trial. == "StudyProc5")
-A.JOL2 = subset(A,
-                A$Procedure.Trial. == "StudyProc7" | A$Procedure.Trial. == "StudyProc8")
+A.JOL1 = subset(A.JOL3,
+                A.JOL3$Procedure.Trial. == "StudyProc3" | A.JOL3$Procedure.Trial. == "StudyProc5")
+A.JOL2 = subset(A.JOL3,
+                A.JOL3$Procedure.Trial. == "StudyProc7" | A.JOL3$Procedure.Trial. == "StudyProc8")
 
 ##Next, get things sorted
 #jols
@@ -124,7 +129,6 @@ A.recall = subset(A,
                   A$Type == "recall")
 A.JOL = subset(A,
                A$Type == "JOL")
-
 
 ##split JOL and recall by block
 #JOLs
@@ -211,17 +215,23 @@ combinedA = combinedA[ , -c(13:16)]
 
 ####Now do the same for version B####
 ##First remove buffer trials
-B = subset(B,
-           B$ListNum > 5)
+B$Direction = as.numeric(B$Direction)
+
+B.JOL3 = subset(B,
+           B$Direction != "1")
+
+B.JOL3$Direction = factor(B.JOL3$Direction,
+                     levels = c(2,3,4,5),
+                     labels = c("B", "F", "S", "U"))
 summary(B)
 
 #add study or recall coding
 B.recall = subset(B,
                   B$Procedure.Trial. == "recallproc1" | B$Procedure.Trial. == "recallproc2")
-B.JOL1 = subset(B,
-                B$Procedure.Trial. == "StudyProc3" | B$Procedure.Trial. == "StudyProc5")
-B.JOL2 = subset(B,
-                B$Procedure.Trial. == "StudyProc7" | B$Procedure.Trial. == "StudyProc8")
+B.JOL1 = subset(B.JOL3,
+                B.JOL3$Procedure.Trial. == "StudyProc3" | B.JOL3$Procedure.Trial. == "StudyProc5")
+B.JOL2 = subset(B.JOL3,
+                B.JOL3$Procedure.Trial. == "StudyProc7" | B.JOL3$Procedure.Trial. == "StudyProc8")
 
 ##Next, get things sorted
 #jols
@@ -346,17 +356,22 @@ combinedB = combinedB[ , -c(13:16)]
 
 ####Now do the same for version C####
 ##First remove buffer trials
-C = subset(C,
-           C$ListNum > 5)
-summary(C)
+C$Direction = as.numeric(C$Direction)
+
+C.JOL3 = subset(C,
+           C$Direction != "1")
+
+C.JOL3$Direction = factor(C.JOL3$Direction,
+                     levels = c(2,3,4,5),
+                     labels = c("B", "F", "S", "U"))
 
 #add study or recall coding
 C.recall = subset(C,
                   C$Procedure.Trial. == "recallproc1" | C$Procedure.Trial. == "recallproc2")
-C.JOL1 = subset(C,
-                C$Procedure.Trial. == "StudyProc3" | C$Procedure.Trial. == "StudyProc5")
-C.JOL2 = subset(C,
-                C$Procedure.Trial. == "StudyProc7" | C$Procedure.Trial. == "StudyProc8")
+C.JOL1 = subset(C.JOL3,
+                C.JOL3$Procedure.Trial. == "StudyProc3" | C.JOL3$Procedure.Trial. == "StudyProc5")
+C.JOL2 = subset(C.JOL3,
+                C.JOL3$Procedure.Trial. == "StudyProc7" | C.JOL3$Procedure.Trial. == "StudyProc8")
 
 ##Next, get things sorted
 #jols
@@ -481,17 +496,23 @@ combinedC = combinedC[ , -c(13:16)]
 
 ####Now do the same for D####
 ##First remove buffer trials
-D = subset(D,
-           D$ListNum > 5)
+D$Direction = as.numeric(D$Direction)
+
+D.JOL3 = subset(D,
+           D$Direction != "1")
+
+D.JOL3$Direction = factor(D.JOL3$Direction,
+                     levels = c(2,3,4,5),
+                     labels = c("B", "F", "S", "U"))
 summary(D)
 
 #add study or recall coding
 D.recall = subset(D,
                   D$Procedure.Trial. == "recallproc1" | D$Procedure.Trial. == "recallproc2")
-D.JOL1 = subset(D,
-                D$Procedure.Trial. == "StudyProc3" | D$Procedure.Trial. == "StudyProc5")
-D.JOL2 = subset(D,
-                D$Procedure.Trial. == "StudyProc7" | D$Procedure.Trial. == "StudyProc8")
+D.JOL1 = subset(D.JOL3,
+                D.JOL3$Procedure.Trial. == "StudyProc3" | D.JOL3$Procedure.Trial. == "StudyProc5")
+D.JOL2 = subset(D.JOL3,
+                D.JOL3$Procedure.Trial. == "StudyProc7" | D.JOL3$Procedure.Trial. == "StudyProc8")
 
 ##Next, get things sorted
 #jols

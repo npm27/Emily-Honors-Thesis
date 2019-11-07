@@ -113,10 +113,4 @@ combined$scored = as.numeric(combined$percent_match >= 100 & combined$percent_ma
 combined$scored[is.na(combined$scored)] = 0
 
 #Write output to a .csv
-#write.csv(combined, file = "auto score 10_18.csv", row.names = FALSE)
-
-(tapply(combined$scored,
-       list(combined$ExperimentName, combined$Direction), mean)) * 100
-
-tapply(combined$JOL,
-       list(combined$ExperimentName, combined$Direction), mean, na.rm = T)
+write.csv(combined, file = "auto score 11_4.csv", row.names = FALSE)
