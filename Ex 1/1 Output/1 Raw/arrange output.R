@@ -8,7 +8,7 @@ library(dplyr)
 #Need to get pword 7 and pword 8 from e-prime file
 
 #read in data
-dat = read.csv("raw 10_31 2.csv") #switch this out for the most recent file
+dat = read.csv("raw 1_14.csv") #switch this out for the most recent file
 
 summary(dat)
 table(dat$ExperimentName)
@@ -640,5 +640,5 @@ combined = rbind(combinedA, combinedB, combinedC, combinedD)
 #combined = rbind(C, D)
 
 #Write to file
-#remove '#' from line 623 to write output to a csv file
-#write.csv(combined, file = "processed 10_31.csv", row.names = FALSE) #change date on filename
+#remove '#' from line 643 to write output to a csv file
+#write.csv(combined, file = "processed 1_14.csv", row.names = FALSE) #change date on filename
