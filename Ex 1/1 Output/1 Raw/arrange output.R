@@ -8,7 +8,7 @@ library(dplyr)
 #Need to get pword 7 and pword 8 from e-prime file
 
 #read in data
-dat = read.csv("raw 1_14.csv") #switch this out for the most recent file
+dat = read.csv("raw 11_4.csv") #switch this out for the most recent file
 
 summary(dat)
 table(dat$ExperimentName)
@@ -199,10 +199,10 @@ JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
 
 #recall
 recall2 = A4[ - c(7, 9, 10)]
-colnames(recall2)[8] = "Response" 
+colnames(recall2)[8] = "Response"
 
 recall1 = A3[ - c(7, 10, 11)]
-colnames(recall1)[8] = "Response" 
+colnames(recall1)[8] = "Response"
 
 ##put back together
 recall = rbind(recall1, recall2)
@@ -342,10 +342,10 @@ JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
 
 #recall
 recall2 = B4[ - c(7, 9, 10)]
-colnames(recall2)[8] = "Response" 
+colnames(recall2)[8] = "Response"
 
 recall1 = B3[ - c(7, 10, 11)]
-colnames(recall1)[8] = "Response" 
+colnames(recall1)[8] = "Response"
 
 ##put back together
 recall = rbind(recall1, recall2)
@@ -482,10 +482,10 @@ JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
 
 #recall
 recall2 = C4[ - c(7, 9, 10)]
-colnames(recall2)[8] = "Response" 
+colnames(recall2)[8] = "Response"
 
 recall1 = C3[ - c(7, 10, 11)]
-colnames(recall1)[8] = "Response" 
+colnames(recall1)[8] = "Response"
 
 ##put back together
 recall = rbind(recall1, recall2)
@@ -623,10 +623,10 @@ JOLs = JOLs[order(JOLs$Block, decreasing = FALSE), ]
 
 #recall
 recall2 = D4[ - c(7, 9, 10)]
-colnames(recall2)[8] = "Response" 
+colnames(recall2)[8] = "Response"
 
 recall1 = D3[ - c(7, 10, 11)]
-colnames(recall1)[8] = "Response" 
+colnames(recall1)[8] = "Response"
 
 ##put back together
 recall = rbind(recall1, recall2)
@@ -641,4 +641,4 @@ combined = rbind(combinedA, combinedB, combinedC, combinedD)
 
 #Write to file
 #remove '#' from line 643 to write output to a csv file
-#write.csv(combined, file = "processed 1_14.csv", row.names = FALSE) #change date on filename
+#write.csv(combined, file = "processed 11_4 final final.csv", row.names = FALSE) #change date on filename
