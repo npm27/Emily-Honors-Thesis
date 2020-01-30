@@ -205,3 +205,33 @@ length(tapply(anova_data$Subject,
        anova_data$type, unique)[[2]]) #READ
 length(tapply(anova_data$Subject,
        anova_data$type, unique)[[3]]) #RL
+
+####Remove RL D####
+anova_data2 = subset(anova_data,
+                     anova_data$ExperimentName != "RL_JOL D")
+
+output2 = ezANOVA(data = anova_data2,
+                  wid = Subject,
+                  between = type,
+                  within = .(Direction, Task),
+                  dv = Score,
+                  type = 3,
+                  detailed = T)
+output2
+output1
+
+tapply(anova_data2$Score,
+       list(anova_data2$type, anova_data2$task), mean)
+
+#recall
+anova_recall = subset(anova_data2,
+                      anova_data2$Task == "Recall")
+tapply(anova_recall$Score,
+       list(anova_recall$type, anova_recall$Direction), mean)
+
+#jol
+anova_jol = subset(anova_data2,
+                   anova_data2$Task == "JOL")
+tapply(anova_jol$Score,
+       list(anova_jol$type, anova_jol$Direction), mean)
+

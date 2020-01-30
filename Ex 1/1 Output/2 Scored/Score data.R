@@ -32,4 +32,4 @@ answer = tolower(as.character(answer))
 output = percent_match(answer, key = key, id = ID)
 
 #now score! Lets set .75 as our match criteria
-#score_recall(output, set.cutoff = .75) #This one writes the output to a .csv file
+score_recall(output, set.cutoff = .75) #This one writes the output to a .csv file
