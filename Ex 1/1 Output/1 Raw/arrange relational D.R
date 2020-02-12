@@ -157,4 +157,4 @@ recall = rbind(recall1, recall2)
 combinedD = cbind(JOLs, recall)
 combinedD = combinedD[ , -c(13:16)]
 
-write.csv(combinedD, file = "Relational_D.csv", row.names = F)
+#write.csv(combinedD, file = "Relational_D", row.names = F)
