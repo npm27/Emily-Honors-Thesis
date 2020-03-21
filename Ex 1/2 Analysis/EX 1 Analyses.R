@@ -6,7 +6,7 @@ summary(master) #lets see what we're working with here
 
 #drop unused columns
 #all we really need is EX Version, subject ID, JOL rating, RT, block, pair type, and whether or not they recalled it correctly
-dat = master[ , -c(4, 11:12, 14:19)]
+dat = master[ , -c(4, 11:12, 14:18)]
 dat = dat[, -c(4:5, 7, 10)]
 
 #okay, lets take another summary
@@ -180,11 +180,19 @@ output1 = ezANOVA(data = anova_data,
                   detailed = T)
 output1
 
+anovaLength = length(output1$ANOVA)
+output1$ANOVA$MSE = output1$ANOVA$SSd/output1$ANOVA$DFd
+output1$ANOVA$MSE
+
+
 length(unique(anova_data$Subject)) #84 subjects
 
 #overall score
 tapply(anova_data$Score,
-       list(anova_data$type, anova_data$task), mean)
+       list(anova_data$type), mean)
+
+tapply(anova_data$Score,
+       list(anova_data$Direction), mean)
 
 #recall
 anova_recall = subset(anova_data,
@@ -206,32 +214,270 @@ length(tapply(anova_data$Subject,
 length(tapply(anova_data$Subject,
        anova_data$type, unique)[[3]]) #RL
 
-####Remove RL D####
-anova_data2 = subset(anova_data,
-                     anova_data$ExperimentName != "RL_JOL D")
+####Get Means for Post-Hocs####
+tapply(anova_data$Score, anova_data$Direction, mean) #main effect of direction 
+tapply(anova_data$Score, anova_data$Task, mean) #main effect of JOL vs Recall
+tapply(anova_data$Score, anova_data$type, mean) #main effect of instruction type
 
-output2 = ezANOVA(data = anova_data2,
-                  wid = Subject,
-                  between = type,
-                  within = .(Direction, Task),
-                  dv = Score,
-                  type = 3,
-                  detailed = T)
-output2
-output1
+tapply(anova_data$Score, list(anova_data$Task, anova_data$Direction), mean) #This is our two-way between task and direction
+tapply(anova_data$Score, list(anova_data$Task, anova_data$type), mean) #Two way between JOL vs Recall and instruction type
+tapply(anova_data$Score, list(anova_data$type, anova_data$Direction), mean) #Two way between task and direction #Note that these scores are combined across JOLs and Recall
 
-tapply(anova_data2$Score,
-       list(anova_data2$type, anova_data2$task), mean)
-
+####Get the three-way interaction####
 #recall
-anova_recall = subset(anova_data2,
-                      anova_data2$Task == "Recall")
-tapply(anova_recall$Score,
-       list(anova_recall$type, anova_recall$Direction), mean)
+anova_recall = subset(anova_data,
+                      anova_data$Task == "Recall")
 
 #jol
-anova_jol = subset(anova_data2,
-                   anova_data2$Task == "JOL")
+anova_jol = subset(anova_data,
+                   anova_data$Task == "JOL")
+
+#Three-way output
+tapply(anova_recall$Score,
+       list(anova_recall$type, anova_recall$Direction), mean)
 tapply(anova_jol$Score,
        list(anova_jol$type, anova_jol$Direction), mean)
 
+####Post-Hocs Start Here!####
+
+#####MAIN EFFECT OF DIRECTION####
+#Make the data
+Direction.Combined = cast(anova_data, Subject ~ Direction, mean)
+
+#Get SD
+sd(Direction.Combined$F)
+sd(Direction.Combined$B)
+sd(Direction.Combined$S)
+sd(Direction.Combined$U)
+
+#t-tests
+#F vs B
+temp1 = t.test(Direction.Combined$F, Direction.Combined$B, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+
+temp1;SEM1 #SIG
+
+#F vs S
+temp2 = t.test(Direction.Combined$F, Direction.Combined$S, paired = T, p.adjust.methods = "Bonferroni")
+p2 = round(temp2$p.value, 3)
+t2 = temp2$statistic
+SEM2 = (temp2$conf.int[2] - temp2$conf.int[1]) / 3.92
+
+temp2;SEM2 #SIG
+
+#F vs U
+temp3 = t.test(Direction.Combined$F, Direction.Combined$U, paired = T, p.adjust.methods = "Bonferroni")
+p3 = round(temp3$p.value, 3)
+t3 = temp3$statistic
+SEM3 = (temp3$conf.int[2] - temp3$conf.int[1]) / 3.92
+
+temp3;SEM3 #SIG
+
+#B vs S
+temp4 = t.test(Direction.Combined$B, Direction.Combined$S, paired = T, p.adjust.methods = "Bonferroni")
+p4 = round(temp4$p.value, 3)
+t4 = temp4$statistic
+SEM4 = (temp4$conf.int[2] - temp4$conf.int[1]) / 3.92
+
+temp4;SEM4 #SIG
+
+#B vs U
+temp5 = t.test(Direction.Combined$B, Direction.Combined$S, paired = T, p.adjust.methods = "Bonferroni")
+p5 = round(temp5$p.value, 3)
+t5 = temp5$statistic
+SEM5 = (temp5$conf.int[2] - temp5$conf.int[1]) / 3.92
+
+temp5;SEM5 #SIG
+
+#S vs U
+temp6 = t.test(Direction.Combined$S, Direction.Combined$U, paired = T, p.adjust.methods = "Bonferroni")
+p6 = round(temp6$p.value, 3)
+t6 = temp6$statistic
+SEM6 = (temp6$conf.int[2] - temp6$conf.int[1]) / 3.92
+
+temp6;SEM6 #SIG
+
+####MAIN EFFECT OF TASK TYPE (JOL vs RECALL)####
+#Make the data
+Task.Combined = cast(anova_data, Subject ~ Task, mean)
+
+#Get SD
+sd(Task.Combined$JOL)
+sd(Task.Combined$Recall)
+
+#Now do the t-tests
+#S vs U
+temp7 = t.test(Task.Combined$JOL, Task.Combined$Recall, paired = T, p.adjust.methods = "Bonferroni")
+p7 = round(temp7$p.value, 3)
+t7 = temp7$statistic
+SEM7 = (temp7$conf.int[2] - temp7$conf.int[1]) / 3.92
+
+temp7;SEM7 #SIG
+
+####MAIN EFFECT OF INSTRUCTION TYPE####
+#make the data
+Type.Combined = cast(anova_data, Subject ~ type, mean)
+
+#get sd
+sd(Type.Combined$IS, na.rm = T)
+sd(Type.Combined$READ, na.rm = T)
+sd(Type.Combined$RL, na.rm = T)
+
+#Now do t-tests
+#IS vs RL
+temp8 = t.test(Type.Combined$IS, Type.Combined$RL, paired = F, p.adjust.methods = "Bonferroni")
+p8 = round(temp8$p.value, 3)
+t8 = temp8$statistic
+SEM8 = (temp8$conf.int[2] - temp8$conf.int[1]) / 3.92
+
+temp8;SEM8 #NON-SIG
+
+#IS vs READ
+temp9 = t.test(Type.Combined$IS, Type.Combined$READ, paired = F, p.adjust.methods = "Bonferroni")
+p9 = round(temp9$p.value, 3)
+t9 = temp9$statistic
+SEM9 = (temp9$conf.int[2] - temp9$conf.int[1]) / 3.92
+
+temp9;SEM9 #SIG
+
+#RL vs READ
+temp10 = t.test(Type.Combined$RL, Type.Combined$READ, paired = F, p.adjust.methods = "Bonferroni")
+p10 = round(temp10$p.value, 3)
+t10 = temp10$statistic
+SEM10 = (temp10$conf.int[2] - temp10$conf.int[1]) / 3.92
+
+temp10;SEM10 #SIG
+
+####NOW DO THE TWO-WAY INTERACTIONS####
+####INTERACTION BETWEEN TASK AND DIRECTION (ILLUSION OF COMPETENCE)
+#First will need to separate out JOL and Recall data
+IOC.JOL = subset(anova_data,
+                anova_data$Task == "JOL")
+IOC.Recall = subset(anova_data,
+                    anova_data$Task == "Recall")
+
+#Now get subject level means for each direction type
+#make the data, one for JOLs and one for recall
+IOC.JOL2 = cast(IOC.JOL, Subject ~ Direction, mean)
+IOC.Recall2 = cast(IOC.Recall, Subject ~ Direction, mean)
+
+#Get SDs
+#Start with JOLs
+sd(IOC.JOL2$B)
+sd(IOC.JOL2$F)
+sd(IOC.JOL2$S)
+sd(IOC.JOL2$U)
+
+#Now Recall
+sd(IOC.Recall2$B)
+sd(IOC.Recall2$F)
+sd(IOC.Recall2$S)
+sd(IOC.Recall2$U)
+
+##Now do the t-tests
+##Forward
+temp11 = t.test(IOC.JOL2$F, IOC.Recall2$F, paired = T, p.adjust.methods = "Bonferroni")
+p11 = round(temp11$p.value, 3)
+t11 = temp11$statistic
+SEM11 = (temp11$conf.int[2] - temp11$conf.int[1]) / 3.92
+
+temp11;SEM11 #NON-SIG
+
+##Backward
+temp12 = t.test(IOC.JOL2$B, IOC.Recall2$B, paired = T, p.adjust.methods = "Bonferroni")
+p12 = round(temp12$p.value, 3)
+t12 = temp12$statistic
+SEM12 = (temp12$conf.int[2] - temp12$conf.int[1]) / 3.92
+
+temp12;SEM12 #Sig!
+
+##Symmetrical
+temp13 = t.test(IOC.JOL2$S, IOC.Recall2$S, paired = T, p.adjust.methods = "Bonferroni")
+p13 = round(temp13$p.value, 3)
+t13 = temp13$statistic
+SEM13 = (temp13$conf.int[2] - temp13$conf.int[1]) / 3.92
+
+temp13;SEM13 #NON-Sig
+
+##Unrelated
+temp14 = t.test(IOC.JOL2$U, IOC.Recall2$U, paired = T, p.adjust.methods = "Bonferroni")
+p14 = round(temp14$p.value, 3)
+t14 = temp14$statistic
+SEM14 = (temp13$conf.int[2] - temp13$conf.int[1]) / 3.92
+
+temp14;SEM13 #Sig!
+
+##So collapsing across instruction type, the IOC replicates for backward and unrelated pairs, does not occur for symmetrical pairs!
+
+####Three-way interaction####
+##Need to subset by instruction type now
+
+#Start with JOLs
+Read.JOL = subset(IOC.JOL,
+                  IOC.JOL$type == "READ")
+IS.JOL = subset(IOC.JOL,
+                IOC.JOL$type == "IS")
+RL.JOL = subset(IOC.JOL,
+                IOC.JOL$type == "RL")
+
+#Now do recall
+Read.RECALL = subset(IOC.Recall,
+                     IOC.Recall$type == "READ")
+IS.RECALL = subset(IOC.Recall,
+                   IOC.Recall$type == "IS")
+RL.RECALL = subset(IOC.Recall,
+                   IOC.Recall == "RL")
+
+#Now get subject level means for these datasets
+#JOLs
+Read.JOL2 = cast(Read.JOL, Subject ~ Direction, mean)
+IS.JOL2 = cast(IS.JOL, Subject ~ Direction, mean)
+RL.JOL2 = cast(RL.JOL, Subject ~ Direction, mean)
+
+#Recall
+Read.RECALL2 = cast(Read.RECALL, Subject ~ Direction, mean)
+IS.RECALL2 = cast(IS.RECALL, Subject ~ Direction, mean)
+RL.RECALL2 = cast(RL.RECALL, Subject ~ Direction, mean)
+
+#Now get SD
+#Start with JOLs
+#Read
+sd(Read.RECALL2$B)
+sd(Read.RECALL2$F)
+sd(Read.RECALL2$S)
+sd(Read.RECALL2$U)
+
+#IS
+sd(IS.RECALL2$B)
+sd(IS.RECALL2$F)
+sd(IS.RECALL2$S)
+sd(IS.RECALL2$U)
+
+#RL
+sd(RL.RECALL2$B)
+sd(RL.RECALL2$F)
+sd(RL.RECALL2$S)
+sd(RL.RECALL2$U)
+
+#Now Recall
+#Read
+sd(Read.JOL2$B)
+sd(Read.JOL2$F)
+sd(Read.JOL2$S)
+sd(Read.JOL2$U)
+
+#IS
+sd(IS.JOL2$B)
+sd(IS.JOL2$F)
+sd(IS.JOL2$S)
+sd(IS.JOL2$U)
+
+#RL
+sd(RL.JOL2$B)
+sd(RL.JOL2$F)
+sd(RL.JOL2$S)
+sd(RL.JOL2$U)
+
+##Now do the t-tests

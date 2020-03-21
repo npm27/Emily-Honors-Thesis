@@ -19,7 +19,9 @@ summary(master)
 master$JOL = as.numeric(master$JOL)
 
 #remove out of range scores
-master$JOL[master$JOL > 100]
+master$JOL[master$JOL > 100] = NA
+
+summary(master$JOL)
 
 #subset by instruction type
 summary(master$ExperimentName)
@@ -74,6 +76,7 @@ cast.IS = cast(na.omit(JOL.IS), Subject ~ Direction, mean)
 cast.RL = cast(na.omit(JOL.RL), Subject ~ Direction, mean)
 cast.Read = cast(na.omit(JOL.Read), Subject ~ Direction, mean)
 
+#Now Recall
 cast.IS2 = cast(na.omit(Recall.IS), Subject ~ Direction, mean)
 cast.RL2 = cast((Recall.RL), Subject ~ Direction, mean)
 cast.Read2 = cast(na.omit(Recall.Read), Subject ~ Direction, mean)
