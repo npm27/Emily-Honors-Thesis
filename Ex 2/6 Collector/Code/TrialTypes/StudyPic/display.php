@@ -6,7 +6,7 @@
 </div>
   
 <!-- show the answer -->
-<h2 class="textcenter"><?php echo $answer; ?></h2>
+<h4 class="textcenter"><?php echo $answer; ?></h4>
 
 <!-- response and RT form -->
 <div class="textcenter">
