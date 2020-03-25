@@ -1,0 +1,32 @@
+Username,ID,Date,Session,Condition_Number,Condition_Description,Output_File,Stimuli_File,Procedure_File,Browser,DeviceType,OS,IP
+555,2jci68mdfc,2020-03-23T21:35:51+00:00,1,1,"How to use Collector",Output_Session1_555_2jci68mdfc.csv,LearningStimFiles.csv,LearningProcedureFiles.csv,"Firefox 74.0",Desktop,Win10,::1
+4554,dnn37p4lyo,2020-03-23T21:44:36+00:00,1,14,"Creating a multisession experiment (see Procedure)",Output_Session1_4554_dnn37p4lyo.csv,FullStim.csv,MultiSession.csv,"Firefox 74.0",Desktop,Win10,::1
+1111,2grq92uhi3,2020-03-24T14:12:28+00:00,1,1,"How to use Collector",Output_Session1_1111_2grq92uhi3.csv,LearningStimFiles.csv,LearningProcedureFiles.csv,"Firefox 74.0",Desktop,Win10,::1
+222,i7u3kd36hk,2020-03-24T14:18:18+00:00,1,14,"Creating a multisession experiment (see Procedure)",Output_Session1_222_i7u3kd36hk.csv,FullStim.csv,MultiSession.csv,"Firefox 74.0",Desktop,Win10,::1
+ddd,ozyrmt7nfz,2020-03-24T14:19:34+00:00,1,15,"Version A",Output_Session1_ddd_ozyrmt7nfz.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+adsfa,q282itrdfs,2020-03-24T14:22:15+00:00,1,15,"Version A",Output_Session1_adsfa_q282itrdfs.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+222,urq24sdbso,2020-03-24T14:30:18+00:00,1,2,"All study; The most simple case",Output_Session1_222_urq24sdbso.csv,WordPairHigh.csv,studyNoShuffle.csv,"Firefox 74.0",Desktop,Win10,::1
+dad,9291uaqj31,2020-03-24T14:31:19+00:00,1,15,"Version A",Output_Session1_dad_9291uaqj31.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+adfa,pqraessj88,2020-03-24T14:36:06+00:00,1,7,"Simultaneous Stimuli and Procedure shuffling",Output_Session1_adfa_pqraessj88.csv,WordPairMixed.csv,studyTestHiLo-Shuffle.csv,"Firefox 74.0",Desktop,Win10,::1
+1111,x9n03q6h7q,2020-03-24T14:45:43+00:00,1,15,"Version A",Output_Session1_1111_x9n03q6h7q.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+4444,k6wpy120e2,2020-03-24T14:59:06+00:00,1,15,"Version A",Output_Session1_4444_k6wpy120e2.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+122,56tft5v5vq,2020-03-24T15:21:33+00:00,1,15,"Version A",Output_Session1_122_56tft5v5vq.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+546465,nawu3mta90,2020-03-24T15:33:23+00:00,1,15,"Version A",Output_Session1_546465_nawu3mta90.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+4654654,o30vhtn2rf,2020-03-24T15:49:03+00:00,1,15,"Version A",Output_Session1_4654654_o30vhtn2rf.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+0222,6zdigh2kjs,2020-03-24T16:06:21+00:00,1,3,"Study and test trials",Output_Session1_0222_6zdigh2kjs.csv,WordPairHigh.csv,studyTestNoShuffle.csv,"Firefox 74.0",Desktop,Win10,::1
+2222,pka5bslsgs,2020-03-24T16:06:30+00:00,1,15,"Version A",Output_Session1_2222_pka5bslsgs.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+24242,0ioom4pcj0,2020-03-24T16:09:49+00:00,1,15,"Version A",Output_Session1_24242_0ioom4pcj0.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+2222,v29pnplwda,2020-03-24T16:12:16+00:00,1,15,"Version A",Output_Session1_2222_v29pnplwda.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+45645,y1nteytlgy,2020-03-24T16:16:48+00:00,1,4,"Shuffle `Stimuli` file only",Output_Session1_45645_y1nteytlgy.csv,WordPairHighShuffle.csv,studyTestNoShuffle.csv,"Firefox 74.0",Desktop,Win10,::1
+456456,ts7nt51287,2020-03-24T16:16:56+00:00,1,15,"Version A",Output_Session1_456456_ts7nt51287.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+454,qq53mah007,2020-03-24T16:24:23+00:00,1,15,"Version A",Output_Session1_454_qq53mah007.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+100,yp91iejd1a,2020-03-24T18:41:27+00:00,1,15,"Version A",Output_Session1_100_yp91iejd1a.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+23232,5tuijfzxun,2020-03-24T18:43:53+00:00,1,15,"Version A",Output_Session1_23232_5tuijfzxun.csv,versionA_stim.csv,VersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+adfadf,r4dlx7x58d,2020-03-24T19:19:19+00:00,1,3,"Read Version C",Output_Session1_adfadf_r4dlx7x58d.csv,versionC_stim.csv,READVersionC.csv,"Firefox 74.0",Desktop,Win10,::1
+adsfadsfa,owyor4cqhw,2020-03-24T19:45:58+00:00,1,5,"JOL Version A",Output_Session1_adsfadsfa_owyor4cqhw.csv,versionA_stim.csv,JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+fadsf,hkkfywllaa,2020-03-24T20:00:38+00:00,1,5,"JOL Version A",Output_Session1_fadsf_hkkfywllaa.csv,versionA_stim.csv,JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+adfadf,xu8uqx4xdz,2020-03-24T20:30:30+00:00,1,5,"JOL Version A",Output_Session1_adfadf_xu8uqx4xdz.csv,versionA_stim.csv,JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+hlkjhklh,4h3ozj8lah,2020-03-24T20:33:38+00:00,1,5,"JOL Version A",Output_Session1_hlkjhklh_4h3ozj8lah.csv,versionA_stim.csv,JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+sfgsfg,9n6erokzpf,2020-03-24T20:42:20+00:00,1,6,"JOL Version B",Output_Session1_sfgsfg_9n6erokzpf.csv,versionA_stim.csv,JOLVersionB.csv,"Firefox 74.0",Desktop,Win10,::1
+adfadf,vb84bqb4vn,2020-03-24T20:45:10+00:00,1,8,"JOL Version D",Output_Session1_adfadf_vb84bqb4vn.csv,versionC_stim.csv,JOLVersionD.csv,"Firefox 74.0",Desktop,Win10,::1
+adfadfaf,zcgkjueql1,2020-03-24T20:59:17+00:00,1,9,"Frequency Version A",Output_Session1_adfadfaf_zcgkjueql1.csv,versionA_stim.csv,FREQVersionA.csv,"Firefox 74.0",Desktop,Win10,::1

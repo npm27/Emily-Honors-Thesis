@@ -1,0 +1,13 @@
+Number,Stimuli,Procedure,Condition Description,Condition Notes
+1,versionA_stim.csv,READVersionA.csv,Read Version A,"Dissertation, read only version A"
+2,versionA_stim.csv,READVersionB.csv,Read Version B,"Dissertation, read only version B"
+3,versionC_stim.csv,READVersionC.csv,Read Version C,"Dissertation, read only version C"
+4,versionC_stim.csv,READVersionD.csv,Read Version D,"Dissertation, read only version D"
+5,versionA_stim.csv,JOLVersionA.csv,JOL Version A,"Dissertation, JOL version A"
+6,versionA_stim.csv,JOLVersionB.csv,JOL Version B,"Dissertation, JOL version B"
+7,versionC_stim.csv,JOLVersionC.csv,JOL Version C,"Dissertation, JOL version C"
+8,versionC_stim.csv,JOLVersionD.csv,JOL Version D,"Dissertation, JOL version D"
+9,versionA_stim.csv,FREQVersionA.csv,Frequency Version A,"Dissertation, Frequency version A"
+10,versionA_stim.csv,FREQVersionB.csv,Frequency Version B,"Dissertation, Frequency version B"
+11,versionC_stim.csv,FREQVersionC.csv,Frequency Version C,"Dissertation, Frequency version C"
+12,versionC_stim.csv,FREQVersionD.csv,Frequency Version D,"Dissertation, Frequency version D"

@@ -1,0 +1,6 @@
+Username,ID,Date,Session,Condition_Number,Condition_Description,Output_File,Stimuli_File,Procedure_File,Browser,DeviceType,OS,IP
+ddd,egeqmty1lv,2020-03-24T21:34:31+00:00,1,1,"Read Version A",Output_Session1_ddd_egeqmty1lv.csv,versionA_stim.csv,READVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+ddd,nadjruafik,2020-03-24T21:35:33+00:00,1,2,"Read Version B",Output_Session1_ddd_nadjruafik.csv,versionA_stim.csv,READVersionB.csv,"Firefox 74.0",Desktop,Win10,::1
+555,0hwfn76i50,2020-03-24T21:39:36+00:00,1,3,"Read Version C",Output_Session1_555_0hwfn76i50.csv,versionC_stim.csv,READVersionC.csv,"Firefox 74.0",Desktop,Win10,::1
+4545,8fqr0rhasq,2020-03-25T01:13:25+00:00,1,4,"Read Version D",Output_Session1_4545_8fqr0rhasq.csv,versionC_stim.csv,READVersionD.csv,"Firefox 74.0",Desktop,Win10,::1
+100,7rqwccirg8,2020-03-25T01:21:11+00:00,1,5,"JOL Version A",Output_Session1_100_7rqwccirg8.csv,versionA_stim.csv,JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
