@@ -1,8 +1,21 @@
 Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
-0,Instruct,-,5,"In this section, you will be presented with a series of word pairs.",Initial_Instruct,Instruct1
-0,Instruct,-,10,"As you study, you will be asked to rate your ability to remember the second item in the pair if you were only shown the first at test. You will make these ratings using a 0 to 100 Scale.",,Instruct13
+0,Instruct,-,10,"In this section, you will be presented with a series of word pairs. As you study, you will be asked to rate your ability to remember the second item in the pair if you were only shown the first at test. You will make these ratings using a 0 to 100 Scale.",,Instruct13
 0,Instruct,-,10,"For  example, if you are given the pair CAT - DOG, a rating of 0 indicates that you would not remember DOG at test, while a rating of 100 indicates full certainty that you would remember the word DOG at test.",,Instruct14
-0,Instruct,-,10,"When making your ratings, it is criticial that you use the full range of the scale. You will be disqualified for only giving ratings of 0 or 100! After making your rating, press Enter to advance to the next pair.",,Instruct15
+0,Instruct,-,10,"When making these ratings, it is criticial that you use the full range of the scale. You will be disqualified for only giving ratings of 0 or 100! After making your rating, press Enter to advance to the next pair.",,Instruct15
+0,Instruct,-,15,"As you study and make your ratings, please think about how the two concepts are RELATED to each other. For example, if you see the pair TURTLE-CAT, think about how both are alive, they are both animals, and both can be kept as pets.",,Instruct19
+0,FreeRecall,-,10,What you should think about as you study each item pair? Type your response in the box below.,,CHECK1
+0,Instruct,-,5,You will now complete a practice session. Please study the following items and rate your ability to remember them. Remember to think about how the two items are similiar!,,Instruct17
+182,JOL,User,-,,Study/JOL,PRACTICE
+183,JOL,User,-,,Study/JOL,PRACTICE
+184,JOL,User,-,,Study/JOL,PRACTICE
+185,JOL,User,-,,Study/JOL,PRACTICE
+186,JOL,User,-,,Study/JOL,PRACTICE
+187,JOL,User,-,,Study/JOL,PRACTICE
+188,JOL,User,-,,Study/JOL,PRACTICE
+189,JOL,User,-,,Study/JOL,PRACTICE
+190,JOL,User,-,,Study/JOL,PRACTICE
+191,JOL,User,-,,Study/JOL,PRACTICE
+0,Instruct,User,-,You have completed this section. Please press Enter to continue.,,Instruct18
 0,Instruct,User,-,You will now begin the study. Press Enter when you are ready to begin.,,Instruct16
 2,JOL,User,-,,Study/JOL,BUFFER
 3,JOL,User,-,,Study/JOL,BUFFER
@@ -43,6 +56,7 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 38,JOL,User,-,,Study/JOL,Study Phase
 39,JOL,User,-,,Study/JOL,Study Phase
 40,JOL,User,-,,Study/JOL,Study Phase
+0,Instruct,-,3,Remember to focus on how the two items are similiar while you study and make your ratings!,,CHECK2
 41,JOL,User,-,,Study/JOL,Study Phase
 42,JOL,User,-,,Study/JOL,Study Phase
 43,JOL,User,-,,Study/JOL,Study Phase
@@ -94,6 +108,8 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 89,JOL,User,-,,Study/JOL,BUFFER2
 90,JOL,User,-,,Study/JOL,BUFFER2
 91,JOL,User,-,,Study/JOL,BUFFER2
+0,Instruct,User,-,You have completed this section. Please press Enter.,Filler_Instruction,Instruct5
+0,FreeRecall,-,10,What were you supposed to focus on while you studied each pair? (Hint: Think back to the instructions). Type your answer in the space below.,,CHECK3
 0,Instruct,User,-,You have completed this section. Please press Enter.,Filler_Instruction,Instruct2
 0,FreeRecall,120,120,Please list the 50 US states in alphabetical order. The task will automatically advance to the next screen after two minutes.,,Filler1
 0,Instruct,-,10,"You will now be presented with the first word from each of the previously studied item pairs. Please type the missing word. If you do not know the word, you may guess or press Enter to skip forward to the next pair.",,Instruct3
@@ -178,7 +194,9 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 85,Test,User,-,,Recall,Recall1
 86,Test,User,-,,Recall,Recall1
 0,Instruct,-,10,"You will now be presented with a new set of word pairs. Please study each pair. Remember that your memory will be tested! When finished, press Enter to move to the next pair.",Initial_Instruct,Instruct4
-0,Instruct,,10,You will again be asked your ability to remember these items using a 0 to 100 scale. Remember to use the full range of the scale!,,Instruct10
+0,Instruct,,10,You will again be asked to rate your ability to remember these items using a 0 to 100 scale. Remember to use the full range of the scale!,,Instruct10
+0,Instruct,-,15,"As you study and make your ratings, please think about how the two concepts are RELATED to each other. For example, if you see the pair TURTLE-CAT, think about how both are alive, they are both animals, and both can be kept as pets.",,Instruct20
+0,FreeRecall,-,10,What you should think about as you study each item pair? Type your response in the box below.,,CHECK4
 0,Instruct,User,-,Press Enter when you are readty to begin,,Instruct11
 92,JOL,User,-,,Study/JOL,BUFFER3
 93,JOL,User,-,,Study/JOL,BUFFER3
@@ -219,6 +237,7 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 128,JOL,User,-,,Study/JOL,Study Phase2
 129,JOL,User,-,,Study/JOL,Study Phase2
 130,JOL,User,-,,Study/JOL,Study Phase2
+0,Instruct,-,3,Remember to focus on how the two items are similiar while you study and make your ratings!,,CHECK5
 131,JOL,User,-,,Study/JOL,Study Phase2
 132,JOL,User,-,,Study/JOL,Study Phase2
 133,JOL,User,-,,Study/JOL,Study Phase2
@@ -271,6 +290,8 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 180,JOL,User,-,,Study/JOL,BUFFER4
 181,JOL,User,-,,Study/JOL,BUFFER4
 0,Instruct,User,-,You have completed this section. Please press Enter.,Filler_Instruction,Instruct5
+0,FreeRecall,-,10,What were you supposed to focus on while you studied each pair? (Hint: Think back to the instructions). Type your answer in the space below.,,CHECK3
+0,Instruct,User,-,You have completed this section. Please press Enter.,Filler_Instruction,Instruct2
 0,FreeRecall,120,120,Please list the 50 US states in reverse alphabetical order (z - a). The task will automatically advance to the next screen after two minutes.,,Filler2
 0,Instruct,-,10,"You will now be presented with the first word from each of the previously studied item pairs. Please type the missing word. If you do not know the word, you may guess or press Enter to skip forward to the next pair.",,Instruct6
 97,Test,User,-,,Recall,Recall2
