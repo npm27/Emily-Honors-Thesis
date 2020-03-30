@@ -1,6 +1,6 @@
 <?php
     if (!isset($text) || $text === '') { 
-        $text = 'How likely are you to correctly recall the items below?|Type your response on a scale from 0-100 and then press Enter.';
+        $text = 'How likely are you to correctly recall the second item in the pair?|Type your response on a scale from 0-100 and then press Enter.';
     }
 
     $texts = explode('|', $text);
