@@ -405,9 +405,9 @@ temp13;SEM13 #NON-Sig
 temp14 = t.test(IOC.JOL2$U, IOC.Recall2$U, paired = T, p.adjust.methods = "Bonferroni")
 p14 = round(temp14$p.value, 3)
 t14 = temp14$statistic
-SEM14 = (temp13$conf.int[2] - temp13$conf.int[1]) / 3.92
+SEM14 = (temp14$conf.int[2] - temp14$conf.int[1]) / 3.92
 
-temp14;SEM13 #Sig!
+temp14;SEM14 #Sig!
 
 ##So collapsing across instruction type, the IOC replicates for backward and unrelated pairs, does not occur for symmetrical pairs!
 
@@ -481,3 +481,7 @@ sd(RL.JOL2$S)
 sd(RL.JOL2$U)
 
 ##Now do the t-tests
+temp = t.test(IOC.JOL2$U, IOC.Recall2$U, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp14$p.value, 3)
+t = temp14$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
