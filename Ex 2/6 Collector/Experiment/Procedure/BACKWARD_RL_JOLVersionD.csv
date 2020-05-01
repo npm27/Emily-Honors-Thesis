@@ -199,7 +199,7 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 0,FreeRecall,-,10,"Based on the graph you just studied, what pair type is best remembered (Forward, Backward, or Symmetrical)?",,BACKWARD_INSTRUCTIONS2
 0,Instruct,-,10,"You will now be presented with a new set of word pairs. Please study each pair. Remember that your memory will be tested! When finished, press Enter to move to the next pair.",Initial_Instruct,Instruct4
 0,Instruct,,10,You will again be asked to rate your ability to remember these items using a 0 to 100 scale. Remember to use the full range of the scale!,,Instruct10
-0,Instruct,-,15,"As you study and make your ratings, please think about the unique featues of each item and how the two concepts are DIFFERENT from each other. For example, if you see the pair TURTLE-CAT, think about how TURTLES have shells and are reptiles, while CATS are mammals and have fur. ",,Instruct20
+0,Instruct,-,15,"As you study and make your ratings, please think about how the two concepts are RELATED to each other. For example, if you see the pair TURTLE-CAT, think about how both are alive, they are both animals, and both can be kept as pets.",,Instruct20
 0,FreeRecall,-,10,What you should think about as you study each item pair? Type your response in the box below.,,CHECK4
 0,Instruct,User,-,Press Enter when you are readty to begin,,Instruct11
 2,JOL,User,-,,Study/JOL,BUFFER3

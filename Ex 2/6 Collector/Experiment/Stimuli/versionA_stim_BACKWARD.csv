@@ -85,7 +85,7 @@ CASH,WOULD,ON,U,83
 HIDE,SICK,ON,U,84
 KING,VASE,ON,U,85
 GEESE,GOOSE,Buffer2,Buffer,86
-SHERRIF,POLICE,Buffer2,Buffer,87
+SHERIFF,POLICE,Buffer2,Buffer,87
 MALT,CHOCOLATE,Buffer2,Buffer,88
 MOON,SPACE,Buffer2,Buffer,89
 THING,STUFF,Buffer2,Buffer,90
@@ -161,7 +161,7 @@ MAZE,ELECTION,ON2,U,159
 VEHICLE,CHARM,ON2,U,160
 MEAT,OBTAIN,ON2,U,161
 CRACKLE,ABLE,ON2,U,162
-Shell,SHAKE,ON2,U,163
+SHELL,SHAKE,ON2,U,163
 LISTEN,FICTION,ON2,U,164
 KEYS,JOKE,ON2,U,165
 CAKE,CLOTHES,ON2,U,166
@@ -171,7 +171,7 @@ MOAT                     ,CLEAR                    ,ON2,U,169
 LEASE                    ,TOIL                     ,ON2,U,170
 LOAN                     ,SIGN                     ,ON2,U,171
 BOTH                     ,OUNCE                    ,ON2,U,172
-TEMPERATURE,Morning,ON2,U,173
+TEMPERATURE,MORNING,ON2,U,173
 MIRROR,CHILDREN,ON2,U,174
 MAIN                     ,SCAR                     ,ON2,U,175
 DAYS,WEAKS,Buffer3,Buffer,176
@@ -189,4 +189,4 @@ CHOCOLATE,BAR,PRACTICE,PRACTICE,187
 CHIME,MUSIC,PRACTICE,PRACTICE,188
 BEHAVIOR,SOCIAL,PRACTICE,PRACTICE,189
 FASHION,MODEL,PRACTICE,PRACTICE,190
-images/Sample.jpg,"Forward pairs (CREDIT-CARD) are remembered better than Backward pairs (CARD-CREDIT) and Symmetrical pairs (KING-QUEEN), even people rate their ability to remember them the same way. Please keep this in mind as you make your ratings!",,,
+images/Sample.jpg,"Forward pairs (CREDIT-CARD) are remembered better than Backward pairs (CARD-CREDIT) and Symmetrical pairs (KING-QUEEN), even though people rate their ability to remember them the same way. Please keep this in mind as you make your ratings!",,,

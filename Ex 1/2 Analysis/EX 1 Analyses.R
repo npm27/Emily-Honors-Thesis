@@ -428,7 +428,7 @@ Read.RECALL = subset(IOC.Recall,
 IS.RECALL = subset(IOC.Recall,
                    IOC.Recall$type == "IS")
 RL.RECALL = subset(IOC.Recall,
-                   IOC.Recall == "RL")
+                   IOC.Recall$type == "RL")
 
 #Now get subject level means for these datasets
 #JOLs
@@ -442,7 +442,7 @@ IS.RECALL2 = cast(IS.RECALL, Subject ~ Direction, mean)
 RL.RECALL2 = cast(RL.RECALL, Subject ~ Direction, mean)
 
 #Now get SD
-#Start with JOLs
+#Start with Recall
 #Read
 sd(Read.RECALL2$B)
 sd(Read.RECALL2$F)
@@ -481,7 +481,40 @@ sd(RL.JOL2$S)
 sd(RL.JOL2$U)
 
 ##Now do the t-tests
-temp = t.test(IOC.JOL2$U, IOC.Recall2$U, paired = T, p.adjust.methods = "Bonferroni")
-p = round(temp14$p.value, 3)
-t = temp14$statistic
+###Start with Unrelated
+#IS
+temp = t.test(IS.JOL2$U, IS.RECALL2$U, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+#Read
+temp = t.test(Read.JOL2$U, Read.RECALL2$U, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+#RL
+temp = t.test(RL.JOL2$U, RL.RECALL2$U, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+###Now do backward pairs
+#IS
+temp = t.test(IS.JOL2$B, IS.RECALL2$B, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+#Read
+temp = t.test(Read.JOL2$B, Read.RECALL2$B, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+#RL
+temp = t.test(RL.JOL2$B, RL.RECALL2$B, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
 SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92

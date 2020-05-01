@@ -189,7 +189,7 @@ Item,Trial Type,Max Time,Min Time,Text,Procedure Notes,Shuffle
 175,Test,User,-,,Recall,Recall1
 176,Test,User,-,,Recall,Recall1
 0,Instruct,-,10,"You will now be presented with a new set of word pairs. Please study each pair. Remember that your memory will be tested! When finished, press Enter to move to the next pair.",Initial_Instruct,Instruct4
-0,Instruct,,10,You will again be asked your ability to remember these items using a 0 to 100 scale. Remember to use the full range of the scale!,,Instruct10
+0,Instruct,,10,You will again be asked to rate your ability to remember these items using a 0 to 100 scale. Remember to use the full range of the scale!,,Instruct10
 0,Instruct,User,-,Press Enter when you are readty to begin,,Instruct11
 2,JOL,User,-,,Study/JOL,BUFFER3
 3,JOL,User,-,,Study/JOL,BUFFER3
