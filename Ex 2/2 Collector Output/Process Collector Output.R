@@ -16,7 +16,7 @@ setwd('..')
 
 ####Clean up the data####
 ##Drop Unused Columns
-dat = dat[ , c(1, 5, 8, 11:15, 16, 19, 26, 33)]
+dat = dat[ , c(1, 5, 8, 11:15, 16, 19, 24, 26, 33)]
 
 #Next, remove buffer trials
 dat = subset(dat,
@@ -58,13 +58,13 @@ dat.Recall = dat.Recall[order(dat.Recall$Condition.Number), ]
 dat.Recall = dat.Recall[order(dat.Recall$Stimuli.Shuffle), ]
 
 #Okay, put it back together now
-dat.Recall = dat.Recall[ , c(9:11)]
+dat.Recall = dat.Recall[ , c(9:12)]
 
 combined = cbind(dat.JOL, dat.Recall)
-combined = combined[ , -c(10:11, 13:14)]
+combined = combined[ , -c(10, 12, 14)]
 
-colnames(combined)[10] = "JOL"
-colnames(combined)[11] = "Recall.Response"
+colnames(combined)[11] = "JOL"
+colnames(combined)[14] = "Recall.Response"
 
 ####Score the recall data####
 library(lrd)
