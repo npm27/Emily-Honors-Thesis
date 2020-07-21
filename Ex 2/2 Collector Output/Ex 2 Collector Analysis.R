@@ -1,4 +1,8 @@
 ####Set up####
+library(mice)
+library(reshape)
+library(ez)
+
 warning = read.csv("warning.csv")
 no_warning = read.csv("No Warning.csv")
 
@@ -115,11 +119,14 @@ colnames(no_warning)[4] = "Block"
 Eprime_no_warning = Eprime_no_warning[ , c(2, 1, 4, 3, 5, 6)]
 
 Eprime_no_warning$Version = rep("Eprime")
-no_warning$Version = rep("Collector")
+
+colnames(no_warning)[7] = "Version"
 
 Eprime_no_warning$Username = as.character(Eprime_no_warning$Username)
 
-no_warning$Block = as.numeric(no_warning$Block)
+#no_warning$Block = as.numeric(no_warning$Block)
+no_warning$Block[no_warning$Block == "Study Phase"] = 1
+no_warning$Block[no_warning$Block == "Study Phase2"] = 2
 
 combined_no_warning = rbind(no_warning, Eprime_no_warning)
 
@@ -132,11 +139,13 @@ colnames(warning)[4] = "Block"
 Eprime_warning = Eprime_warning[ , c(2, 1, 4, 3, 5, 6)]
 
 Eprime_warning$Version = rep("Eprime")
-warning$Version = rep("Collector")
+colnames(warning)[7] = "Version"
 
 Eprime_warning$Username = as.character(Eprime_warning$Username)
 
-warning$Block = as.numeric(warning$Block)
+#warning$Block = as.numeric(warning$Block)
+warning$Block[warning$Block == "Study Phase"] = 1
+warning$Block[warning$Block == "Study Phase2"] = 2
 
 combined_warning = rbind(warning, Eprime_warning)
 
@@ -219,10 +228,6 @@ RE2$z_U = scale(RE2$U)
 #Note that these may change as we get more data
 combined_no_warning = subset(combined_no_warning,
                              combined_no_warning$Username != "w10006452SW")
-combined_no_warning = subset(combined_no_warning,
-                             combined_no_warning$Username != "w984625_KW")
-combined_no_warning = subset(combined_no_warning,
-                             combined_no_warning$Username != "w10016099CJ")
 
 ###Now look at warning block 1 data
 cb1_IS = subset(combined_warning_block1,
@@ -265,8 +270,6 @@ RL2$z_F = scale(RL2$F)
 RL2$z_S = scale(RL2$S)
 RL2$z_U = scale(RL2$U)
 
-#00161487MT
-
 ##Read
 RE1 = cast(cb1_READ[ , c(1, 3, 5)], Username ~ Direction, mean, na.rm = T)
 
@@ -308,8 +311,6 @@ IS2$z_F = scale(IS2$F)
 IS2$z_S = scale(IS2$S)
 IS2$z_U = scale(IS2$U)
 
-#w10006452_sew	
-
 ##Relational
 RL1 = cast(cb2_RL[ , c(1, 3, 5)], Username ~ Direction, mean, na.rm = T)
 
@@ -325,8 +326,6 @@ RL2$z_B = scale(RL2$B)
 RL2$z_F = scale(RL2$F)
 RL2$z_S = scale(RL2$S)
 RL2$z_U = scale(RL2$U)
-
-#00161487MT
 
 ##Read
 RE1 = cast(cb2_READ[ , c(1, 3, 5)], Username ~ Direction, mean, na.rm = T)
@@ -344,24 +343,6 @@ RE2$z_F = scale(RE2$F)
 RE2$z_S = scale(RE2$S)
 RE2$z_U = scale(RE2$U)
 
-#w10025409_jnl
-
-##Remove outliers from block 1
-combined_warning_block1 = subset(combined_warning_block1,
-                                 combined_warning_block1$Username != "w10025409_jnl")
-combined_warning_block1 = subset(combined_warning_block1,
-                                 combined_warning_block1$Username != "00161487MT")
-combined_warning_block1 = subset(combined_warning_block1,
-                                 combined_warning_block1$Username != "w10006452_sew")
-
-#Remove outliers from block 2
-combined_warning_block2 = subset(combined_warning_block2,
-                                 combined_warning_block2$Username != "w10025409_jnl")
-combined_warning_block2 = subset(combined_warning_block2,
-                                 combined_warning_block2$Username != "00161487MT")
-combined_warning_block2 = subset(combined_warning_block2,
-                                 combined_warning_block2$Username != "w10006452_sew")
-
 ##Split no warning by block
 combined_no_warning_block1 = subset(combined_no_warning,
                                  combined_no_warning$Block == 1)
@@ -369,6 +350,10 @@ combined_no_warning_block2 = subset(combined_no_warning,
                                  combined_no_warning$Block == 2)
 
 ####Warning Descriptives####
+##Sample size
+length(unique(combined_no_warning$Username)) #71
+length(unique(combined_warning$Username))  #70
+
 ##Block1
 tapply(combined_warning_block1$JOL, 
        list(combined_warning_block1$Condition.Description, combined_warning_block1$Direction), mean, na.rm = T)
@@ -399,28 +384,28 @@ tapply(combined_no_warning_block2$Recall_Score,
 #Start with warning
 is.w = subset(combined_warning,
               combined_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.w$Username)) # 11 people
+length(unique(is.w$Username)) # 24 people
 
 rl.w = subset(combined_warning,
               combined_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.w$Username)) # 8 people
+length(unique(rl.w$Username)) # 19 people
 
 read.w = subset(combined_warning,
                 combined_warning$Condition.Description == "READ")
-length(unique(read.w$Username)) #15 people
+length(unique(read.w$Username)) #27 people
 
 #Now check no warning
 is.n = subset(combined_no_warning,
               combined_no_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.n$Username)) #20 people
+length(unique(is.n$Username)) #25 people
 
 rl.n = subset(combined_no_warning,
               combined_no_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.n$Username)) #17 people
+length(unique(rl.n$Username)) #25 people
 
 read.n = subset(combined_no_warning,
                 combined_no_warning$Condition.Description == "READ")
-length(unique(read.n$Username)) #13 people
+length(unique(read.n$Username)) #21 people
 
 ####Save combined dataset as .csv####
 #write.csv(combined_no_warning_block1, file = "no_warning_b1.csv", row.names = F)

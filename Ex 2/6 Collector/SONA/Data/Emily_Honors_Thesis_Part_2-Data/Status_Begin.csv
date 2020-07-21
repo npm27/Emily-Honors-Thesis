@@ -1,0 +1,10 @@
+Username,ID,Date,Session,Condition_Number,Condition_Description,Output_File,Stimuli_File,Procedure_File,Browser,DeviceType,OS,IP
+adadfadf,5tmn3c0736,2020-03-25T13:51:52+00:00,1,1,"JOL Version A",Output_Session1_adadfadf_5tmn3c0736.csv,versionA_stim.csv,READ_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+adfadf,7oluet3d11,2020-03-25T13:54:40+00:00,1,1,"JOL Version A",Output_Session1_adfadf_7oluet3d11.csv,versionA_stim.csv,READ_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+54545,5k56002zyz,2020-03-25T13:56:28+00:00,1,1,"JOL Version A",Output_Session1_54545_5k56002zyz.csv,versionA_stim.csv,READ_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+dfadfadf,gtrix5zzyn,2020-03-25T14:18:20+00:00,1,5,"ITEM SPECIFIC Version A",Output_Session1_dfadfadf_gtrix5zzyn.csv,versionA_stim.csv,IS_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+4654654,0a016l4tlx,2020-03-25T14:30:18+00:00,1,5,"ITEM SPECIFIC Version A",Output_Session1_4654654_0a016l4tlx.csv,versionA_stim.csv,IS_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+alkdsjflaj,9caa87ub7w,2020-03-25T15:13:14+00:00,1,9,"RELATIONAL Version A",Output_Session1_alkdsjflaj_9caa87ub7w.csv,versionA_stim.csv,RL_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+jljlj,zv0nhzz2uu,2020-03-25T15:40:27+00:00,1,13,"BACKWARD READ VERSION A",Output_Session1_jljlj_zv0nhzz2uu.csv,versionA_stim_BACKWARD.csv,BACKWARD_READ_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+asdf,pafy3zignl,2020-03-25T15:48:48+00:00,1,13,"BACKWARD READ VERSION A",Output_Session1_asdf_pafy3zignl.csv,versionA_stim_BACKWARD.csv,BACKWARD_READ_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1
+4654654,puycswwew5,2020-03-25T15:53:25+00:00,1,13,"BACKWARD READ VERSION A",Output_Session1_4654654_puycswwew5.csv,versionA_stim_BACKWARD.csv,BACKWARD_READ_JOLVersionA.csv,"Firefox 74.0",Desktop,Win10,::1

@@ -1,0 +1,16 @@
+Username,ID,Trial,Question,Type,RT,Response
+555,2jci68mdfc,1,"Did the experiment go smoothly or were there problems? (Note: Your compensation will not depend on your answer below, so please be honest.)!!!",Radio,2552,Smooth
+555,2jci68mdfc,2,"Have you participated in this experiment (or another experiment using the same learning materials) before?",Radio,4128,Naive
+555,2jci68mdfc,3,"How much fun was this experiment? <p>1 being very fun -- 7 being the MOST FUN EVER</p>",Likert,1660,4
+555,2jci68mdfc,4,"Were you doing anything else while this experiment was going on? You will get credit no matter how you respond here.",Text,1410,
+555,2jci68mdfc,5,"Which of the following problems did you have?",Checkbox,2352,reload
+222,urq24sdbso,1,"Did the experiment go smoothly or were there problems? (Note: Your compensation will not depend on your answer below, so please be honest.)!!!",Radio,6039,Smooth
+222,urq24sdbso,2,"Have you participated in this experiment (or another experiment using the same learning materials) before?",Radio,2789,Naive
+222,urq24sdbso,3,"How much fun was this experiment? <p>1 being very fun -- 7 being the MOST FUN EVER</p>",Likert,1121,1
+222,urq24sdbso,4,"Were you doing anything else while this experiment was going on? You will get credit no matter how you respond here.",Text,975,
+222,urq24sdbso,5,"Which of the following problems did you have?",Checkbox,1000,
+23232,5tuijfzxun,1,"Did the experiment go smoothly or were there problems? (Note: Your compensation will not depend on your answer below, so please be honest.)!!!",Radio,19056,Smooth
+23232,5tuijfzxun,2,"Have you participated in this experiment (or another experiment using the same learning materials) before?",Radio,1941,Naive
+23232,5tuijfzxun,3,"How much fun was this experiment? <p>1 being very fun -- 7 being the MOST FUN EVER</p>",Likert,1611,4
+23232,5tuijfzxun,4,"Were you doing anything else while this experiment was going on? You will get credit no matter how you respond here.",Text,1414,
+23232,5tuijfzxun,5,"Which of the following problems did you have?",Checkbox,2536,"blank page"
