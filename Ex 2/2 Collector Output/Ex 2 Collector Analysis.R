@@ -352,7 +352,7 @@ combined_no_warning_block2 = subset(combined_no_warning,
 ####Warning Descriptives####
 ##Sample size
 length(unique(combined_no_warning$Username)) #71
-length(unique(combined_warning$Username))  #70
+length(unique(combined_warning$Username))  #72
 
 ##Block1
 tapply(combined_warning_block1$JOL, 
@@ -384,11 +384,11 @@ tapply(combined_no_warning_block2$Recall_Score,
 #Start with warning
 is.w = subset(combined_warning,
               combined_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.w$Username)) # 24 people
+length(unique(is.w$Username)) # 25 people
 
 rl.w = subset(combined_warning,
               combined_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.w$Username)) # 19 people
+length(unique(rl.w$Username)) # 20 people
 
 read.w = subset(combined_warning,
                 combined_warning$Condition.Description == "READ")
