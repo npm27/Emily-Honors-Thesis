@@ -1,0 +1,25 @@
+TASK,Encoding Strategy,Direction,Mean,Upper,Lower
+JOL,Read,B,68.58,72.97,64.2
+JOL,Read,F,70.11,74,66.22
+JOL,Read,S,80.2,84.4,76.01
+JOL,Read,U,24.78,30.45,19.1
+JOL,Relational,B,71.48,77,65.96
+JOL,Relational,F,72.96,77.82,68.09
+JOL,Relational,S,75.81,80.62,70.99
+JOL,Relational,U,36.62,42.53,30.72
+JOL,Item-Specific,B,69.57,75.99,63.16
+JOL,Item-Specific,F,68.65,74.62,62.69
+JOL,Item-Specific,S,71.65,76.89,66.4
+JOL,Item-Specific,U,40.65,48.14,33.17
+Recall,Read,B,37.78,42.17,33.39
+Recall,Read,F,65.33,69.22,61.43
+Recall,Read,S,64.84,69.04,60.65
+Recall,Read,U,14.73,20.41,9.05
+Recall,Relational,B,50.43,55.95,44.91
+Recall,Relational,F,77.22,82.08,72.35
+Recall,Relational,S,74.39,79.21,69.57
+Recall,Relational,U,32.51,38.42,26.61
+Recall,Item-Specific,B,58.97,65.39,52.56
+Recall,Item-Specific,F,78.84,84.84,72.88
+Recall,Item-Specific,S,78.23,83.48,72.98
+Recall,Item-Specific,U,14.35,21.84,6.87

@@ -351,32 +351,34 @@ combined_no_warning_block2 = subset(combined_no_warning,
 
 ####Warning Descriptives####
 ##Sample size
-length(unique(combined_no_warning$Username)) #71
-length(unique(combined_warning$Username))  #72
+length(unique(combined_no_warning$Username)) #77
+length(unique(combined_warning$Username))  #82
 
 ##Block1
-tapply(combined_warning_block1$JOL, 
+tapply(combined_warning_block1$JOL,
        list(combined_warning_block1$Condition.Description, combined_warning_block1$Direction), mean, na.rm = T)
-tapply(combined_warning_block1$Recall_Score, 
+
+tapply(combined_warning_block1$Recall_Score,
        list(combined_warning_block1$Condition.Description, combined_warning_block1$Direction), mean, na.rm = T)
 
 ##Block2
-tapply(combined_warning_block2$JOL, 
+tapply(combined_warning_block2$JOL,
        list(combined_warning_block2$Condition.Description, combined_warning_block2$Direction), mean, na.rm = T)
-tapply(combined_warning_block2$Recall_Score, 
+
+tapply(combined_warning_block2$Recall_Score,
        list(combined_warning_block2$Condition.Description, combined_warning_block2$Direction), mean, na.rm = T)
 
 ####Control Descriptives####
 ##Block 1
-tapply(combined_no_warning_block1$JOL, 
+tapply(combined_no_warning_block1$JOL,
        list(combined_no_warning_block1$Condition.Description, combined_no_warning_block1$Direction), mean, na.rm = T)
-tapply(combined_no_warning_block1$Recall_Score, 
+tapply(combined_no_warning_block1$Recall_Score,
        list(combined_no_warning_block1$Condition.Description, combined_no_warning_block1$Direction), mean, na.rm = T)
 
 ##Block 2
-tapply(combined_no_warning_block2$JOL, 
+tapply(combined_no_warning_block2$JOL,
        list(combined_no_warning_block2$Condition.Description, combined_no_warning_block2$Direction), mean, na.rm = T)
-tapply(combined_no_warning_block2$Recall_Score, 
+tapply(combined_no_warning_block2$Recall_Score,
        list(combined_no_warning_block2$Condition.Description, combined_no_warning_block2$Direction), mean, na.rm = T)
 
 ####After cleaning, how many people do we have in each cell?
@@ -384,7 +386,7 @@ tapply(combined_no_warning_block2$Recall_Score,
 #Start with warning
 is.w = subset(combined_warning,
               combined_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.w$Username)) # 25 people
+length(unique(is.w$Username)) # 26 people
 
 rl.w = subset(combined_warning,
               combined_warning$Condition.Description == "RELATIONAL")
@@ -392,7 +394,7 @@ length(unique(rl.w$Username)) # 20 people
 
 read.w = subset(combined_warning,
                 combined_warning$Condition.Description == "READ")
-length(unique(read.w$Username)) #27 people
+length(unique(read.w$Username)) #36 people
 
 #Now check no warning
 is.n = subset(combined_no_warning,
@@ -405,7 +407,7 @@ length(unique(rl.n$Username)) #25 people
 
 read.n = subset(combined_no_warning,
                 combined_no_warning$Condition.Description == "READ")
-length(unique(read.n$Username)) #21 people
+length(unique(read.n$Username)) #27 people
 
 ####Save combined dataset as .csv####
 #write.csv(combined_no_warning_block1, file = "no_warning_b1.csv", row.names = F)
@@ -505,7 +507,7 @@ anova.data6 = rbind(anova.data5, anova.data4)
 model1 = ezANOVA(data = anova.data6,
                  wid = Username,
                  between = .(Warning, Condition.Description),
-                 within = .(Direction, Block, Task),
+                 within = .(Direction, Task),
                  type = 3,
                  dv = Score,
                  detailed = T)

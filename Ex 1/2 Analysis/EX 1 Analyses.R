@@ -215,7 +215,7 @@ length(tapply(anova_data$Subject,
        anova_data$type, unique)[[3]]) #RL
 
 ####Get Means for Post-Hocs####
-tapply(anova_data$Score, anova_data$Direction, mean) #main effect of direction 
+tapply(anova_data$Score, anova_data$Direction, mean) #main effect of direction
 tapply(anova_data$Score, anova_data$Task, mean) #main effect of JOL vs Recall
 tapply(anova_data$Score, anova_data$type, mean) #main effect of instruction type
 
@@ -436,10 +436,60 @@ Read.JOL2 = cast(Read.JOL, Subject ~ Direction, mean)
 IS.JOL2 = cast(IS.JOL, Subject ~ Direction, mean)
 RL.JOL2 = cast(RL.JOL, Subject ~ Direction, mean)
 
+x1 = apply(Read.JOL2[ , -1], 2, mean)
+x2 = apply(IS.JOL2[ , -1], 2, mean)
+x3 = apply(RL.JOL2[ , -1], 2, mean)
+
+y1 = apply(Read.JOL2[ , -1], 2, sd)
+y2 = apply(IS.JOL2[ , -1], 2, sd)
+y3 = apply(RL.JOL2[ , -1], 2, sd)
+
+z1 = y1 / sqrt(nrow(Read.JOL2))
+z2 = y2 / sqrt(nrow(IS.JOL2))
+z3 = y3 / sqrt(nrow(RL.JOL2))
+
+z1 = z1 * 1.96
+z2 = z2 * 1.96
+z3 = z3 * 1.96
+
+x1 + z1
+x1 - z1
+
+x2 + z2
+x2 - z2
+
+x3 + z3
+x3 - z3
+
 #Recall
 Read.RECALL2 = cast(Read.RECALL, Subject ~ Direction, mean)
 IS.RECALL2 = cast(IS.RECALL, Subject ~ Direction, mean)
 RL.RECALL2 = cast(RL.RECALL, Subject ~ Direction, mean)
+
+A1 = apply(Read.RECALL2[ , -1], 2, mean)
+A2 = apply(IS.RECALL2[ , -1], 2, mean)
+A3 = apply(RL.RECALL2[ , -1], 2, mean)
+
+B1 = apply(Read.RECALL2[ , -1], 2, sd)
+B2 = apply(IS.RECALL2[ , -1], 2, sd)
+B3 = apply(RL.RECALL2[ , -1], 2, sd)
+
+C1 = B1 / sqrt(nrow(Read.RECALL2))
+C2 = B2 / sqrt(nrow(IS.RECALL2))
+C3 = B3 / sqrt(nrow(RL.RECALL2))
+
+C1 = C1 * 1.96
+C2 = C2 * 1.96
+C3 = C3 * 1.96
+
+A1 + z1
+A1 - z1
+
+A2 + z2
+A2 - z2
+
+A3 + z3
+A3 - z3
 
 #Now get SD
 #Start with Recall
@@ -461,7 +511,7 @@ sd(RL.RECALL2$F)
 sd(RL.RECALL2$S)
 sd(RL.RECALL2$U)
 
-#Now Recall
+#Now JOLs
 #Read
 sd(Read.JOL2$B)
 sd(Read.JOL2$F)
@@ -518,3 +568,5 @@ temp = t.test(RL.JOL2$B, RL.RECALL2$B, paired = T, p.adjust.methods = "Bonferron
 p = round(temp$p.value, 3)
 t = temp$statistic
 SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+####Get output for Bar charts####
