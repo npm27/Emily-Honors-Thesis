@@ -89,8 +89,8 @@ No_Warning = subset(combined,
                     combined$Condition.Notes == "OLD")
 
 ##Get participant numbers
-length(unique(warning$Username)) #28
-length(unique(No_Warning$Username)) #42
+length(unique(warning$Username)) #51
+length(unique(No_Warning$Username)) #60
 
 warning$platform = rep("sona")
 No_Warning$platform = rep("sona")
@@ -105,7 +105,7 @@ files = list.files(pattern = "*.csv")
 dat = do.call(rbind, lapply(files, function(x) read.csv(x, stringsAsFactors = FALSE)))
 
 #get the number of participants
-length(unique(dat$Username)) #20 participants
+length(unique(dat$Username)) #76 participants
 
 #Now move back to the 2 collector output folder
 #This is where I'll store the combined final output for scoring
@@ -186,8 +186,8 @@ No_Warning2 = subset(combined,
                     combined$Condition.Notes == "OLD")
 
 ##Get participant numbers
-length(unique(warning2$Username))
-length(unique(No_Warning2$Username))
+length(unique(warning2$Username)) ##45
+length(unique(No_Warning2$Username)) ##31
 
 warning2$platform = rep("prolific")
 No_Warning2$platform = rep("prolific")

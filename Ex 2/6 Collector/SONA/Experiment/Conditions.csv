@@ -1,8 +1,8 @@
 Number,Stimuli,Procedure,Condition Description,Condition Notes
-1,versionA_stim.csv,READ_JOLVersionA.csv,READ Version A,OLD
-2,versionA_stim.csv,READ_JOLVersionB.csv,READ Version B,OLD
-3,versionC_stim.csv,READ_JOLVersionC.csv,READ Version C,OLD
-4,versionC_stim.csv,READ_JOLVersionD.csv,READ Version D,OLD
+1,versionA_stim.csv,READ_JOLVersionA.csv,#READ Version A,OLD
+2,versionA_stim.csv,READ_JOLVersionB.csv,#READ Version B,OLD
+3,versionC_stim.csv,READ_JOLVersionC.csv,#READ Version C,OLD
+4,versionC_stim.csv,READ_JOLVersionD.csv,#READ Version D,OLD
 5,versionA_stim.csv,IS_JOLVersionA.csv,ITEM SPECIFIC Version A,OLD
 6,versionA_stim.csv,IS_JOLVersionB.csv,ITEM SPECIFIC Version B,OLD
 7,versionC_stim.csv,IS_JOLVersionC.csv,ITEM SPECIFIC Version C,OLD
@@ -15,10 +15,10 @@ Number,Stimuli,Procedure,Condition Description,Condition Notes
 14,versionA_stim_BACKWARD.csv,BACKWARD_READ_JOLVersionB.csv,#BACKWARD READ VERSION B,NEW
 15,versionC_stim_BACKWARD.csv,BACKWARD_READ_JOLVersionC.csv,#BACKWARD READ VERSION C,NEW
 16,versionC_stim_BACKWARD.csv,BACKWARD_READ_JOLVersionD.csv,#BACKWARD READ VERSION D,NEW
-17,versionA_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,BACKWARD IS VERSION A,NEW
-18,versionA_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,BACKWARD IS VERSION B,NEW
-19,versionC_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,BACKWARD IS VERSION C,NEW
-20,versionC_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,BACKWARD IS VERSION D,NEW
+17,versionA_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,#BACKWARD IS VERSION A,NEW
+18,versionA_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,#BACKWARD IS VERSION B,NEW
+19,versionC_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,#BACKWARD IS VERSION C,NEW
+20,versionC_stim_BACKWARD.csv,BACKWARD_IS_JOLVersionD.csv,#BACKWARD IS VERSION D,NEW
 21,versionA_stim_BACKWARD.csv,BACKWARD_RL_JOLVersionD.csv,BACKWARD RL VERSION A,NEW
 22,versionA_stim_BACKWARD.csv,BACKWARD_RL_JOLVersionD.csv,BACKWARD RL VERSION B,NEW
 23,versionC_stim_BACKWARD.csv,BACKWARD_RL_JOLVersionD.csv,BACKWARD RL VERSION C,NEW

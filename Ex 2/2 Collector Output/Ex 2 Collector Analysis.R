@@ -29,6 +29,8 @@ summary(warning)
 summary(no_warning)
 
 #Remove out of range scores
+warning$JOL = as.numeric(warning$JOL)
+
 warning$JOL[warning$JOL > 100] = NA
 no_warning$JOL[no_warning$JOL > 100] = NA
 
@@ -352,7 +354,7 @@ combined_no_warning_block2 = subset(combined_no_warning,
 ####Warning Descriptives####
 ##Sample size
 length(unique(combined_no_warning$Username)) #77
-length(unique(combined_warning$Username))  #82
+length(unique(combined_warning$Username))  #87
 
 ##Block1
 tapply(combined_warning_block1$JOL,
@@ -368,6 +370,11 @@ tapply(combined_warning_block2$JOL,
 tapply(combined_warning_block2$Recall_Score,
        list(combined_warning_block2$Condition.Description, combined_warning_block2$Direction), mean, na.rm = T)
 
+##Collapsed
+tapply(combined_warning$JOL, list(combined_warning$Direction, combined_warning$Condition.Description), mean, na.rm = T)
+
+tapply(combined_warning$Recall_Score, list(combined_warning$Direction, combined_warning$Condition.Description), mean, na.rm = T)
+
 ####Control Descriptives####
 ##Block 1
 tapply(combined_no_warning_block1$JOL,
@@ -381,16 +388,21 @@ tapply(combined_no_warning_block2$JOL,
 tapply(combined_no_warning_block2$Recall_Score,
        list(combined_no_warning_block2$Condition.Description, combined_no_warning_block2$Direction), mean, na.rm = T)
 
+##Collapsed
+tapply(combined_no_warning$JOL, list(combined_no_warning$Direction, combined_no_warning$Condition.Description), mean, na.rm = T)
+
+tapply(combined_no_warning$Recall_Score, list(combined_no_warning$Direction, combined_no_warning$Condition.Description), mean, na.rm = T)
+
 ####After cleaning, how many people do we have in each cell?
 ##How many people do we have in each cell?
 #Start with warning
 is.w = subset(combined_warning,
               combined_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.w$Username)) # 26 people
+length(unique(is.w$Username)) # 36 people
 
 rl.w = subset(combined_warning,
               combined_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.w$Username)) # 20 people
+length(unique(rl.w$Username)) # 30 people
 
 read.w = subset(combined_warning,
                 combined_warning$Condition.Description == "READ")
@@ -399,15 +411,15 @@ length(unique(read.w$Username)) #36 people
 #Now check no warning
 is.n = subset(combined_no_warning,
               combined_no_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.n$Username)) #25 people
+length(unique(is.n$Username)) #32 people
 
 rl.n = subset(combined_no_warning,
               combined_no_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.n$Username)) #25 people
+length(unique(rl.n$Username)) #31 people
 
 read.n = subset(combined_no_warning,
                 combined_no_warning$Condition.Description == "READ")
-length(unique(read.n$Username)) #27 people
+length(unique(read.n$Username)) #40 people
 
 ####Save combined dataset as .csv####
 #write.csv(combined_no_warning_block1, file = "no_warning_b1.csv", row.names = F)

@@ -29,7 +29,7 @@
         $title   = 'Done!';
         $message = '<h2>Thank you for your participation!</h2>'
 		 .  '<p>To receive credit, please copy the following link into a new browser tab to get your Prolific completion code.</p>'
-		 .  '<p>https://app.prolific.co/submissions/complete?cc=2087937F</p>'
+		 .  '<p>https://app.prolific.co/submissions/complete?cc=25579BDC</p>'
                  .  '<p>If you have any questions about the experiment please email '
                  .      '<a href="mailto:' . $_CONFIG->experimenter_email . '?Subject=Comments%20on%20' . $_CONFIG->experiment_name . '" target="_top">' . $_CONFIG->experimenter_email . '</a>'
                  .  '</p>';
