@@ -569,4 +569,45 @@ p = round(temp$p.value, 3)
 t = temp$statistic
 SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
 
-####Get output for Bar charts####
+####Put together output for Bar charts/Tables####
+##First, drop the Block, RT Column, and task columns
+anova_jol2 = anova_jol[ , -c(3, 4, 7)]
+anova_recall2 = anova_recall[ , -c(3, 4, 7)]
+
+##Now subset based on encoding strategy
+table(anova_jol2$type)
+
+##jols
+IS_JOL3 = subset(anova_jol2,
+                 anova_jol2$type == "IS")
+RL_JOL3 = subset(anova_jol2,
+                 anova_jol2$type == "RL")
+Read_JOL3 = subset(anova_jol2,
+                   anova_jol2$type == "READ")
+
+##Recall
+IS.RECALL3 = subset(anova_recall2,
+                    anova_recall2$type == "IS")
+RL.RECALL3 = subset(anova_recall2,
+                    anova_recall2$type == "RL")
+Read.RECALL3 = subset(anova_recall2,
+                      anova_recall2$type == "READ")
+
+##Okay, now cast them into the right form
+##jols
+IS_JOL4 = cast(IS_JOL3, Subject ~ Direction, mean, na.rm = T)
+RL_JOL4 = cast(RL_JOL3, Subject ~ Direction, mean, na.rm = T)
+READ_JOL4 = cast(Read_JOL3, Subject ~ Direction, mean, na.rm = T)
+
+##Recall
+IS.RECALL4 = cast(IS.RECALL3, Subject ~ Direction, mean, na.rm = T)
+RL.RECALL4 = cast(RL.RECALL3, Subject ~ Direction, mean, na.rm = T)
+Read.RECALL4 = cast(Read.RECALL3, Subject ~ Direction, mean, na.rm = T)
+
+##Write stuff to .csv
+#write.csv(IS_JOL4, file = "IS JOLS.csv", row.names = F)
+#write.csv(RL_JOL4, file = "RL JOLS.csv", row.names = F)
+#write.csv(READ_JOL4, file = "Read JOLs.csv", row.names = F)
+#write.csv(IS.RECALL4, file = "IS RECALL.csv", row.names = F)
+#write.csv(RL.RECALL4, file = "RL RECALL.csv", row.names = F)
+#write.csv(Read.RECALL4, file = "Read RECALL.csv", row.names = F)
