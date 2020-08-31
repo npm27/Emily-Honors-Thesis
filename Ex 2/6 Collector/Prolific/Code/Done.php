@@ -22,12 +22,12 @@
             error_reporting(0);
         }
     }
-    2087937F
+    
     
     // Set the page message
     if ($_CONFIG->next_experiment == false) {
         $title   = 'Done!';
-        $message = '<h2>Thank you for your participation!</h2>'
+    $message = '<h2>Thank you for your participation!</h2>'
 		 .  '<p>To receive credit, please copy the following link into a new browser tab to get your Prolific completion code.</p>'
 		 .  '<p>https://app.prolific.co/submissions/complete?cc=25579BDC</p>'
                  .  '<p>If you have any questions about the experiment please email '
