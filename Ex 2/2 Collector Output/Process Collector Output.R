@@ -186,8 +186,8 @@ No_Warning2 = subset(combined,
                     combined$Condition.Notes == "OLD")
 
 ##Get participant numbers
-length(unique(warning2$Username)) ##45
-length(unique(No_Warning2$Username)) ##31
+length(unique(warning2$Username)) ##46
+length(unique(No_Warning2$Username)) ##41
 
 warning2$platform = rep("prolific")
 No_Warning2$platform = rep("prolific")

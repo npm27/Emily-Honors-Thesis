@@ -402,7 +402,7 @@ length(unique(is.w$Username)) # 36 people
 
 rl.w = subset(combined_warning,
               combined_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.w$Username)) # 30 people
+length(unique(rl.w$Username)) # 31 people
 
 read.w = subset(combined_warning,
                 combined_warning$Condition.Description == "READ")
@@ -411,11 +411,11 @@ length(unique(read.w$Username)) #36 people
 #Now check no warning
 is.n = subset(combined_no_warning,
               combined_no_warning$Condition.Description == "ITEM SPECIFIC")
-length(unique(is.n$Username)) #32 people
+length(unique(is.n$Username)) #38 people
 
 rl.n = subset(combined_no_warning,
               combined_no_warning$Condition.Description == "RELATIONAL")
-length(unique(rl.n$Username)) #31 people
+length(unique(rl.n$Username)) #36 people
 
 read.n = subset(combined_no_warning,
                 combined_no_warning$Condition.Description == "READ")
