@@ -516,7 +516,7 @@ anova.data5$Score = replaced$Score
 anova.data6 = rbind(anova.data5, anova.data4)
 
 ####Run the ANOVA####
-model1 = ezANOVA(data = anova.data6,
+model1 = ezANOVA(data = anova.data2,
                  wid = Username,
                  between = .(Warning, Condition.Description),
                  within = .(Direction, Task),
@@ -524,3 +524,58 @@ model1 = ezANOVA(data = anova.data6,
                  dv = Score,
                  detailed = T)
 model1
+
+####write output to file to make data sheets####
+##JOLs
+Read_jols = subset(anova.data3,
+                   anova.data3$Condition.Description == "READ")
+IS_JOLS = subset(anova.data3,
+                 anova.data3$Condition.Description == "ITEM SPECIFIC")
+RL_JOLS = subset(anova.data3,
+                 anova.data3$Condition.Description == "RELATIONAL")
+
+#Recall
+Read_Recall = subset(anova.data4,
+                   anova.data4$Condition.Description == "READ")
+IS_Recall = subset(anova.data4,
+                 anova.data4$Condition.Description == "ITEM SPECIFIC")
+RL_Recall = subset(anova.data4,
+                 anova.data4$Condition.Description == "RELATIONAL")
+
+table(Read_jols$Warning)
+
+##Now split each one into warning and not warning
+##Jols
+Read_JOLs_control = subset(Read_jols,
+                           Read_jols$warning == "no")
+IS_JOLS_control = subset(IS_JOLS,
+                         IS_JOLS$warning == "no")
+RL_JOLS_control = subset(RL_JOLS,
+                         RL_JOLS$Warning == "no")
+
+Read_JOLs_warning = subset(Read_jols,
+                           Read_jols$warning == "yes")
+IS_JOLS_warning = subset(IS_JOLS,
+                         IS_JOLS$warning == "yes")
+RL_JOLS_warning = subset(RL_JOLS,
+                         RL_JOLS$Warning == "yes")
+
+table(Read_Recall$Warning)
+
+##Recall
+Read_Recall_control = subset(Read_Recall,
+                           Read_Recall$Warning == "no")
+IS_Recall_control = subset(IS_Recall,
+                         IS_Recall$Warning == "no")
+RL_Recall_control = subset(RL_Recall,
+                         RL_Recall$Warning == "no")
+
+Read_Recall_warning = subset(Read_Recall,
+                           Read_Recall$Warning == "yes")
+IS_Recall_warning = subset(IS_Recall,
+                         IS_Recall$Warning == "yes")
+RL_Recall_warning = subset(RL_Recall,
+                         RL_Recall$Warning == "yes")
+
+##Write these to .csv
+write.csv(anova.data2, file = "Emily ex 2 cleaned.csv", row.names = F)
