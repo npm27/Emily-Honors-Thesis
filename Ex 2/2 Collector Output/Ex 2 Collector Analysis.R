@@ -578,4 +578,6 @@ RL_Recall_warning = subset(RL_Recall,
                          RL_Recall$Warning == "yes")
 
 ##Write these to .csv
-write.csv(anova.data2, file = "Emily ex 2 cleaned.csv", row.names = F)
+#write.csv(anova.data2, file = "Emily ex 2 cleaned.csv", row.names = F)
+#Get the data back in the right format
+
