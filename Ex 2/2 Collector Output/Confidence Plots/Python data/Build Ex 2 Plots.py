@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-dat_overall = pd.read_csv("Warning All Blocks.csv")
+dat_overall = pd.read_csv("No Warning.csv")
 
 #Get IS
 dat = dat_overall[dat_overall['Encoding'] == 'IS']
@@ -90,7 +90,7 @@ ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
 ##save figure
 fig
-fig.savefig('Ex2_IS_smoothed.png')
+fig.savefig('Ex2_IS_No_Warning.png')
 
 #Get RL
 dat = dat_overall[dat_overall['Encoding'] == 'RL']
@@ -178,7 +178,7 @@ ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
 ##save figure
 fig
-fig.savefig('Ex2_RL_smoothed.png')
+fig.savefig('Ex2_RL_No_Warning.png')
 
 #Get READ
 dat = dat_overall[dat_overall['Encoding'] == 'READ']
@@ -266,4 +266,4 @@ ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
 ##save figure
 fig
-fig.savefig('Ex2_READ_smoothed.png')
+fig.savefig('Ex2_READ_No_Warning.png')
