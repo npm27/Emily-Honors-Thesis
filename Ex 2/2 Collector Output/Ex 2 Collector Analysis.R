@@ -515,6 +515,7 @@ anova.data5$Score = replaced$Score
 
 anova.data6 = rbind(anova.data5, anova.data4)
 
+
 ####Run the ANOVA####
 model1 = ezANOVA(data = anova.data2,
                  wid = Username,
@@ -524,6 +525,15 @@ model1 = ezANOVA(data = anova.data2,
                  dv = Score,
                  detailed = T)
 model1
+
+model2 = ezANOVA(data = anova.data2,
+                 wid = Username,
+                 between = .(Warning, Condition.Description),
+                 within = .(Direction, Task, Block),
+                 type = 3,
+                 dv = Score,
+                 detailed = T)
+model2
 
 ####write output to file to make data sheets####
 ##JOLs

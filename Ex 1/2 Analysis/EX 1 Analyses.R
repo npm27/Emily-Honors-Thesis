@@ -170,11 +170,15 @@ library(ez)
 #turn off scientific notation
 options(scipen = 999)
 
+unique(anova_data$Block)
+
+anova_data$Block = as.character(anova_data$Block)
+
 #Note: Direction is within subjects, task is within subjects, ex type is between groups
 output1 = ezANOVA(data = anova_data,
                   wid = Subject,
                   between = type,
-                  within = .(Direction, Task),
+                  within = .(Direction, Task, Block),
                   dv = Score,
                   type = 3,
                   detailed = T)
@@ -308,7 +312,7 @@ sd(Task.Combined$JOL)
 sd(Task.Combined$Recall)
 
 #Now do the t-tests
-#S vs U
+#JOL vs Recall
 temp7 = t.test(Task.Combined$JOL, Task.Combined$Recall, paired = T, p.adjust.methods = "Bonferroni")
 p7 = round(temp7$p.value, 3)
 t7 = temp7$statistic
