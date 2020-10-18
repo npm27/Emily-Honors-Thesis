@@ -172,6 +172,8 @@ options(scipen = 999)
 
 unique(anova_data$Block)
 
+length(unique(anova_data$Subject))
+
 anova_data$Block = as.character(anova_data$Block)
 
 #Note: Direction is within subjects, task is within subjects, ex type is between groups
@@ -254,6 +256,11 @@ sd(Direction.Combined$B)
 sd(Direction.Combined$S)
 sd(Direction.Combined$U)
 
+mean(Direction.Combined$F)
+mean(Direction.Combined$B)
+mean(Direction.Combined$S)
+mean(Direction.Combined$U)
+
 #t-tests
 #F vs B
 temp1 = t.test(Direction.Combined$F, Direction.Combined$B, paired = T, p.adjust.methods = "Bonferroni")
@@ -311,6 +318,9 @@ Task.Combined = cast(anova_data, Subject ~ Task, mean)
 sd(Task.Combined$JOL)
 sd(Task.Combined$Recall)
 
+mean(Task.Combined$JOL)
+mean(Task.Combined$Recall)
+
 #Now do the t-tests
 #JOL vs Recall
 temp7 = t.test(Task.Combined$JOL, Task.Combined$Recall, paired = T, p.adjust.methods = "Bonferroni")
@@ -328,6 +338,11 @@ Type.Combined = cast(anova_data, Subject ~ type, mean)
 sd(Type.Combined$IS, na.rm = T)
 sd(Type.Combined$READ, na.rm = T)
 sd(Type.Combined$RL, na.rm = T)
+
+mean(Type.Combined$IS, na.rm = T)
+mean(Type.Combined$READ, na.rm = T)
+mean(Type.Combined$RL, na.rm = T)
+
 
 #Now do t-tests
 #IS vs RL
@@ -572,6 +587,40 @@ temp = t.test(RL.JOL2$B, RL.RECALL2$B, paired = T, p.adjust.methods = "Bonferron
 p = round(temp$p.value, 3)
 t = temp$statistic
 SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+##Forward pairs
+#IS
+temp = t.test(IS.JOL2$F, IS.RECALL2$F, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+mean(IS.JOL2$F)
+mean(IS.RECALL2$F)
+
+sd(IS.JOL2$F)
+sd(IS.RECALL2$F)
+
+#Read
+temp = t.test(Read.JOL2$F, Read.RECALL2$F, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+mean(Read.JOL2$F)
+mean(Read.RECALL2$F)
+
+#RL
+temp = t.test(RL.JOL2$F, RL.RECALL2$F, paired = T, p.adjust.methods = "Bonferroni")
+p = round(temp$p.value, 3)
+t = temp$statistic
+SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+
+mean(RL.JOL2$F)
+mean(RL.RECALL2$F)
+
+##symmetrical pairs
+
 
 ####Put together output for Bar charts/Tables####
 ##First, drop the Block, RT Column, and task columns
