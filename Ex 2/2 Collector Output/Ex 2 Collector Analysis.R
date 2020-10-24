@@ -526,14 +526,19 @@ model1 = ezANOVA(data = anova.data2,
                  detailed = T)
 model1
 
-model2 = ezANOVA(data = anova.data2,
+model2 = ezANOVA(data = anova.data6,
                  wid = Username,
-                 between = .(Warning, Condition.Description),
+                 between = .(Condition.Description),
                  within = .(Direction, Task, Block),
                  type = 3,
                  dv = Score,
                  detailed = T)
 model2
+
+model2$ANOVA$MSE = model2$ANOVA$SSd/model2$ANOVA$DFd
+model2$ANOVA$MSE
+
+tapply(anova.data6$Score, anova.data6$Block, mean, na.rm = T)
 
 ####write output to file to make data sheets####
 ##JOLs
@@ -590,4 +595,6 @@ RL_Recall_warning = subset(RL_Recall,
 ##Write these to .csv
 #write.csv(anova.data2, file = "Emily ex 2 cleaned.csv", row.names = F)
 #Get the data back in the right format
+
+##Do supplemental table
 

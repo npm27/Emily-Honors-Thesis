@@ -190,8 +190,13 @@ anovaLength = length(output1$ANOVA)
 output1$ANOVA$MSE = output1$ANOVA$SSd/output1$ANOVA$DFd
 output1$ANOVA$MSE
 
+length(unique(anova_data$Subject))
+
 
 length(unique(anova_data$Subject)) #84 subjects
+
+##supplemental stuff
+tapply(anova_data$Score, anova_data$Block, mean, na.rm = T)
 
 #overall score
 tapply(anova_data$Score,
@@ -664,3 +669,20 @@ Read.RECALL4 = cast(Read.RECALL3, Subject ~ Direction, mean, na.rm = T)
 #write.csv(IS.RECALL4, file = "IS RECALL.csv", row.names = F)
 #write.csv(RL.RECALL4, file = "RL RECALL.csv", row.names = F)
 #write.csv(Read.RECALL4, file = "Read RECALL.csv", row.names = F)
+
+##Do the supplemental table
+block1 = subset(anova_data, anova_data$Block == 1)
+block2 = subset(anova_data, anova_data$Block == 2)
+
+#Now split each block by measure
+block1.jol = subset(block1, block1$Task == "JOL")
+block2.jol = subset(block2, block2$Task == "JOL")
+
+block1.recall = subset(block1, block1$Task == "Recall")
+block2.recall = subset(block2, block2$Task == "Recall")
+
+tapply(block1.jol$Score, list(block1.jol$type, block1.jol$Direction), mean, na.rm = T)
+tapply(block1.recall$Score, list(block1.recall$type, block1.recall$Direction), mean, na.rm = T)
+
+tapply(block2.jol$Score, list(block2.jol$type, block2.jol$Direction), mean, na.rm = T)
+tapply(block2.recall$Score, list(block2.recall$type, block2.recall$Direction), mean, na.rm = T)
