@@ -597,4 +597,26 @@ RL_Recall_warning = subset(RL_Recall,
 #Get the data back in the right format
 
 ##Do supplemental table
+unique(anova.data6$Warning)
+
+anova_data7 = subset(anova.data6,
+                     anova.data6$Warning == "yes")
+
+block1 = subset(anova_data7, anova_data7$Block == 1)
+block2 = subset(anova_data7, anova_data7$Block == 2)
+
+unique(block1$Task)
+
+#Now split each block by measure
+block1.jol = subset(block1, block1$Task == "JOL")
+block2.jol = subset(block2, block2$Task == "JOL")
+
+block1.recall = subset(block1, block1$Task == "Recall")
+block2.recall = subset(block2, block2$Task == "Recall")
+
+tapply(block1.jol$Score, list(block1.jol$Condition.Description, block1.jol$Direction), mean, na.rm = T)
+tapply(block1.recall$Score, list(block1.recall$Condition.Description, block1.recall$Direction), mean, na.rm = T)
+
+tapply(block2.jol$Score, list(block2.jol$Condition.Description, block2.jol$Direction), mean, na.rm = T)
+tapply(block2.recall$Score, list(block2.recall$Condition.Description, block2.recall$Direction), mean, na.rm = T)
 
