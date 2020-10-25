@@ -275,6 +275,12 @@ SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
 
 temp1;SEM1 #SIG
 
+mean(Direction.Combined$F)
+mean(Direction.Combined$S)
+
+sd(Direction.Combined$F)
+sd(Direction.Combined$S)
+
 #F vs S
 temp2 = t.test(Direction.Combined$F, Direction.Combined$S, paired = T, p.adjust.methods = "Bonferroni")
 p2 = round(temp2$p.value, 3)
@@ -292,7 +298,7 @@ SEM3 = (temp3$conf.int[2] - temp3$conf.int[1]) / 3.92
 temp3;SEM3 #SIG
 
 #B vs S
-temp4 = t.test(Direction.Combined$B, Direction.Combined$S, paired = T, p.adjust.methods = "Bonferroni")
+temp4 = t.test(Direction.Combined$B, Direction.Combined$S, paired = F, p.adjust.methods = "Bonferroni")
 p4 = round(temp4$p.value, 3)
 t4 = temp4$statistic
 SEM4 = (temp4$conf.int[2] - temp4$conf.int[1]) / 3.92
@@ -300,7 +306,7 @@ SEM4 = (temp4$conf.int[2] - temp4$conf.int[1]) / 3.92
 temp4;SEM4 #SIG
 
 #B vs U
-temp5 = t.test(Direction.Combined$B, Direction.Combined$S, paired = T, p.adjust.methods = "Bonferroni")
+temp5 = t.test(Direction.Combined$B, Direction.Combined$S, paired = F, p.adjust.methods = "Bonferroni")
 p5 = round(temp5$p.value, 3)
 t5 = temp5$statistic
 SEM5 = (temp5$conf.int[2] - temp5$conf.int[1]) / 3.92
@@ -308,7 +314,7 @@ SEM5 = (temp5$conf.int[2] - temp5$conf.int[1]) / 3.92
 temp5;SEM5 #SIG
 
 #S vs U
-temp6 = t.test(Direction.Combined$S, Direction.Combined$U, paired = T, p.adjust.methods = "Bonferroni")
+temp6 = t.test(Direction.Combined$S, Direction.Combined$U, paired = F, p.adjust.methods = "Bonferroni")
 p6 = round(temp6$p.value, 3)
 t6 = temp6$statistic
 SEM6 = (temp6$conf.int[2] - temp6$conf.int[1]) / 3.92
@@ -373,6 +379,21 @@ t10 = temp10$statistic
 SEM10 = (temp10$conf.int[2] - temp10$conf.int[1]) / 3.92
 
 temp10;SEM10 #SIG
+
+##Do pbic
+relational1 = Type.Combined[ , c(1,4)]
+is1 = Type.Combined[ , c(1,2)]
+
+relational1$task = rep("rel")
+is1$task = rep("is")
+
+relational1 = na.omit(relational1)
+is1 = na.omit(is1)
+
+colnames(relational1)[2] = "Score"
+colnames(is1)[2] = "Score"
+
+pbic1 = rbind(is1, relational1)
 
 ####NOW DO THE TWO-WAY INTERACTIONS####
 ####INTERACTION BETWEEN TASK AND DIRECTION (ILLUSION OF COMPETENCE)
