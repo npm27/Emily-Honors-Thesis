@@ -193,7 +193,7 @@ output1$ANOVA$MSE
 length(unique(anova_data$Subject))
 
 
-length(unique(anova_data$Subject)) #84 subjects
+length(unique(anova_data$Subject)) #88 subjects
 
 ##supplemental stuff
 tapply(anova_data$Score, anova_data$Block, mean, na.rm = T)
@@ -636,6 +636,20 @@ SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
 mean(Read.JOL2$F)
 mean(Read.RECALL2$F)
 
+Read.JOL2$task = rep("JOL")
+Read.RECALL2$task = rep("RECALL")
+
+pbic2 = rbind(Read.JOL2, Read.RECALL2)
+
+length(unique(pbic2$Subject))
+
+ezANOVA(pbic2,
+        dv = F,
+        within = task,
+        wid = Subject,
+        type = 3,
+        detailed = T)
+
 #RL
 temp = t.test(RL.JOL2$F, RL.RECALL2$F, paired = T, p.adjust.methods = "Bonferroni")
 p = round(temp$p.value, 3)
@@ -644,6 +658,20 @@ SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
 
 mean(RL.JOL2$F)
 mean(RL.RECALL2$F)
+
+RL.JOL2$task = rep("JOL")
+RL.RECALL2$task = rep("RECALL")
+
+pbic3 = rbind(RL.JOL2, RL.RECALL2)
+
+length(unique(pbic3$Subject))
+
+ezANOVA(pbic3,
+        dv = F,
+        within = task,
+        wid = Subject,
+        type = 3,
+        detailed = T)
 
 ##symmetrical pairs
 
@@ -707,3 +735,47 @@ tapply(block1.recall$Score, list(block1.recall$type, block1.recall$Direction), m
 
 tapply(block2.jol$Score, list(block2.jol$type, block2.jol$Direction), mean, na.rm = T)
 tapply(block2.recall$Score, list(block2.recall$type, block2.recall$Direction), mean, na.rm = T)
+
+####Do that other analysis Mark wants because he's never satisfied####
+JOLS = subset(anova_data,
+              anova_data$Task == "JOL")
+RECALL = subset(anova_data,
+                anova_data$Task == "Recall")
+
+##Get means
+tapply(JOLS$Score, JOLS$type, mean, na.rm = T)
+
+tapply(RECALL$Score, RECALL$type, mean, na.rm = T)
+
+##JOLs
+output1 = ezANOVA(JOLS,
+        dv = Score,
+        between = type,
+        wid = Subject,
+        type = 3,
+        detailed = 3)
+
+output1$ANOVA$MSE = output1$ANOVA$SSd/output1$ANOVA$DFd
+output1$ANOVA$MSE
+
+##Now do Recall
+RECALL2 = cast(RECALL, Subject ~ type, mean)
+
+IS = RECALL2$IS
+IS = na.omit(IS)
+
+RL = RECALL2$RL
+RL = na.omit(RL)
+
+READ = RECALL2$READ
+READ = na.omit(READ)
+
+t.test(IS, RL, paired = F, p.adjust.methods = "Bonferroni")
+t.test(READ, RL, paired = F, p.adjust.methods = "Bonferroni")
+t.test(IS, READ, paired = F, p.adjust.methods = "Bonferroni")
+
+mean(READ)
+mean(RL)
+
+sd(READ)
+sd(RL)
