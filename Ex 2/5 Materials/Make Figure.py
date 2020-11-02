@@ -35,7 +35,7 @@ rects2 = ax1.bar(r2, bars2, width = barwidth, color = 'silver', edgecolor = 'k',
                 label = 'Recall')
 
 ##Add labels, legend, and set tick marks
-ax1.set_title('Comparing Study Pairs', fontsize = 16, pad = 15)
+ax1.set_title('Judgments of Learning and Recall Accuracy', fontsize = 16, pad = 15)
 ax1.set_ylabel('Mean JOL/ Percent Recall', fontsize = 14)
 ax1.set_xlabel('Pair Type', fontsize = 14)
 ax1.xaxis.labelpad = 7.5
@@ -48,4 +48,4 @@ ax1.legend(bbox_to_anchor = (1.04, 0.5), loc = "center left", borderaxespad = 0,
 ax1.set_ylim([0,100])
 
 ##save the thing as a .jpg
-#ex1_fig.savefig('Sample.jpg', dip = 10000)
+ex1_fig.savefig('Sample.jpg', dip = 10000)
