@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-dat_overall = pd.read_csv("Warning.csv")
+dat_overall = pd.read_csv("all.csv")
 
 #Get IS
 dat = dat_overall[dat_overall['Encoding'] == 'IS']
@@ -89,8 +89,11 @@ ax4.set_title("Unrelated", fontsize = 16)
 ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
 ##save figure
+
+fig.suptitle('Item-Specific Group', fontsize=20)
+
 fig
-fig.savefig('Ex2_IS_Warning.png')
+fig.savefig('Ex2_IS.png')
 
 #Get RL
 dat = dat_overall[dat_overall['Encoding'] == 'RL']
@@ -177,8 +180,11 @@ ax4.set_title("Unrelated", fontsize = 16)
 ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
 ##save figure
+
+fig.suptitle('Relational Group', fontsize=20)
+
 fig
-fig.savefig('Ex2_RL_Warning.png')
+fig.savefig('Ex2_RL.png')
 
 #Get READ
 dat = dat_overall[dat_overall['Encoding'] == 'READ']
@@ -264,6 +270,8 @@ ax4.set_title("Unrelated", fontsize = 16)
 
 ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
+fig.suptitle('Read Group', fontsize=20)
+
 ##save figure
 fig
-fig.savefig('Ex2_READ_Warning.png')
+fig.savefig('Ex2_READ.png')
