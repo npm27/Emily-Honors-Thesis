@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-dat = pd.read_csv("Read conf plots.csv")
+dat = pd.read_csv("Is conf plots.csv")
 
 dat['diff'] = dat['Upper'].sub(dat['Lower'])
 dat['diff2'] = dat['diff'].div(2)
@@ -86,8 +86,8 @@ ax4.set_title("Unrelated", fontsize = 16)
 
 ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 
-fig.suptitle('Read Group', fontsize=20)
+fig.suptitle('Item-Specific Group', fontsize=20)
 
 ##save figure
 fig
-fig.savefig('Ex1_Read_smoothed.png')
+fig.savefig('Ex1_IS_smoothed2.png')

@@ -638,3 +638,38 @@ model3
 model3$ANOVA$MSE = model3$ANOVA$SSd/model3$ANOVA$DFd
 model3$ANOVA$MSE
 
+####Finish the supplement####
+RECALL = subset(anova.data6,
+                anova.data6$Task == "Recall")
+JOLS = subset(anova.data6,
+              anova.data6$Task == "JOL")
+
+#Do t tests
+B1 = subset(RECALL, RECALL$Block == "1")
+B2 = subset(RECALL, RECALL$Block == "2")
+
+B11 = subset(JOLS, JOLS$Block == "1")
+B22 = subset(JOLS, JOLS$Block == "2")
+
+RL1 = cast(B1[ , -8], Username ~ Condition.Description, mean, na.rm = T)
+RL2 = cast(B2[ ,-8], Username ~ Condition.Description, mean, na.rm = T)
+
+JL1 = cast(B11[ , -8],Username ~ Condition.Description, mean, na.rm = T)
+JL2 = cast(B22[ , -8], Username ~ Condition.Description, mean, na.rm = T)
+
+tapply(RECALL$Score, list(RECALL$Condition.Description, RECALL$Block), mean, na.rm = T)
+tapply(JOLS$Score, list(JOLS$Condition.Description, JOLS$Block), mean, na.rm = T)
+
+temp1 = t.test(JL2$RELATIONAL, RL2$RELATIONAL, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+mean(JL2$RELATIONAL, na.rm = T)
+mean(RL2$RELATIONAL, na.rm = T)
+
+sd(JL2$RELATIONAL, na.rm = T)
+sd(RL2$RELATIONAL, na.rm = T)
+
+write.csv(RECALL, file = "e2 recall.csv", row.names = F)

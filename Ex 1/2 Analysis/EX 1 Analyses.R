@@ -736,6 +736,9 @@ tapply(block1.recall$Score, list(block1.recall$type, block1.recall$Direction), m
 tapply(block2.jol$Score, list(block2.jol$type, block2.jol$Direction), mean, na.rm = T)
 tapply(block2.recall$Score, list(block2.recall$type, block2.recall$Direction), mean, na.rm = T)
 
+##Do some t-tests
+
+
 ####Do that other analysis Mark wants because he's never satisfied####
 JOLS = subset(anova_data,
               anova_data$Task == "JOL")
@@ -779,3 +782,132 @@ mean(RL)
 
 sd(READ)
 sd(RL)
+
+####Do the three-way interactions####
+View(RECALL)
+
+tapply(RECALL$Score, list(RECALL$Direction, RECALL$Block), mean, na.rm = T)
+tapply(JOLS$Score, list(JOLS$Direction, JOLS$Block), mean, na.rm = T)
+
+#Do t tests
+B1 = subset(RECALL, RECALL$Block == "1")
+B2 = subset(RECALL, RECALL$Block == "2")
+
+B11 = subset(JOLS, JOLS$Block == "1")
+B22 = subset(JOLS, JOLS$Block == "2")
+
+RL1 = cast(B1, Subject ~ type, mean)
+RL2 = cast(B2, Subject ~ type, mean)
+
+JL1 = cast(B11, Subject ~ type, mean)
+JL2 = cast(B22, Subject ~ type, mean)
+
+#Test time!
+#Read
+temp1 = t.test(JL1$READ, RL1$READ, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+temp1 = t.test(JL2$READ, RL2$READ, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+mean(JL2$READ, na.rm = T)
+mean(RL2$READ, na.rm = T)
+
+sd(JL2$READ, na.rm = T)
+sd(RL2$READ, na.rm = T)
+
+temp1 = t.test(JL2$IS, RL2$IS, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+mean(JL2$RL, na.rm = T)
+mean(RL2$RL, na.rm = T)
+
+sd(JL2$RL, na.rm = T)
+sd(RL2$RL, na.rm = T)
+
+temp1 = t.test(JL2$RL, RL2$RL, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+#do pbic
+pbic3 = RL1[ , c(1, 2)]
+pbic4 = JL1[ , c(1, 2)]
+
+pbic3$block = rep("1")
+pbic4$block = rep("2")
+
+pbic5 = rbind(pbic3, pbic4)
+pbic5 = na.omit(pbic5)
+
+ezANOVA(pbic5,
+        wid = Subject,
+        dv = RL,
+        within = block,
+        detailed = T)
+
+#Now do relational
+temp1 = t.test(JL1$RL, RL1$RL, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+##Now do the stuff collapsed across direction
+RL1 = cast(B1, Subject ~ Direction, mean)
+RL2 = cast(B2, Subject ~ Direction, mean)
+
+JL1 = cast(B11, Subject ~ Direction, mean)
+JL2 = cast(B22, Subject ~ Direction, mean)
+
+#do more t-tests
+temp1 = t.test(JL1$U, RL1$U, paired = T, p.adjust.methods = "Bonferroni")
+p1 = round(temp1$p.value, 3)
+t1 = temp1$statistic
+SEM1 = (temp1$conf.int[2] - temp1$conf.int[1]) / 3.92
+temp1 #sig
+
+mean(JL1$U, na.rm = T)
+mean(RL1$U, na.rm = T)
+
+sd(JL1$U, na.rm = T)
+sd(RL1$U, na.rm = T)
+
+#pbic
+#do pbic
+pbic3 = RL1[ , c(1, 4)]
+pbic4 = JL1[ , c(1, 4)]
+
+pbic3$block = rep("1")
+pbic4$block = rep("2")
+
+pbic5 = rbind(pbic3, pbic4)
+pbic5 = na.omit(pbic5)
+
+ezANOVA(pbic5,
+        wid = Subject,
+        dv = S,
+        within = block,
+        detailed = T)
+
+##Okay, do that last analysis
+e2 = read.csv("e2 recall.csv")
+
+RECALL1 = subset(RECALL,
+                 RECALL$Task != "READ")
+RECALL2 = subset(e2,
+                 e2$Task != "READ")
+
+mean(RECALL1$Score)
+mean(RECALL2$Score)
+

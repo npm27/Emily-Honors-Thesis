@@ -93,7 +93,7 @@ ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 fig.suptitle('Item-Specific Group', fontsize=20)
 
 fig
-fig.savefig('Ex2_IS.png')
+fig.savefig('Ex2_IS2.png')
 
 #Get RL
 dat = dat_overall[dat_overall['Encoding'] == 'RL']
@@ -184,7 +184,7 @@ ax4.errorbar(x4, y4, yerr=(datU['diff2']), fmt='none', c= 'k', capsize=5)
 fig.suptitle('Relational Group', fontsize=20)
 
 fig
-fig.savefig('Ex2_RL.png')
+fig.savefig('Ex2_RL2.png')
 
 #Get READ
 dat = dat_overall[dat_overall['Encoding'] == 'READ']
@@ -274,4 +274,4 @@ fig.suptitle('Read Group', fontsize=20)
 
 ##save figure
 fig
-fig.savefig('Ex2_READ.png')
+fig.savefig('Ex2_READ2.png')
