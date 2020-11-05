@@ -626,7 +626,7 @@ tapply(block2.recall$Score, list(block2.recall$Condition.Description, block2.rec
 anova.data7 = subset(anova.data6,
                      anova.data6$Block == "2")
 
-model3 = ezANOVA(data = anova.ata7,
+model3 = ezANOVA(data = anova.data7,
                  wid = Username,
                  between = .(Condition.Description, Warning),
                  within = .(Direction, Task),
