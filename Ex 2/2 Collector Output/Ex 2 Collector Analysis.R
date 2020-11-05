@@ -3,6 +3,8 @@ library(mice)
 library(reshape)
 library(ez)
 
+options(scipen = 999)
+
 warning = read.csv("warning.csv")
 no_warning = read.csv("No Warning.csv")
 
@@ -596,7 +598,7 @@ RL_Recall_warning = subset(RL_Recall,
 #write.csv(anova.data2, file = "Emily ex 2 cleaned.csv", row.names = F)
 #Get the data back in the right format
 
-##Do supplemental table
+####Do supplemental table####
 unique(anova.data6$Warning)
 
 anova_data7 = subset(anova.data6,
@@ -619,4 +621,20 @@ tapply(block1.recall$Score, list(block1.recall$Condition.Description, block1.rec
 
 tapply(block2.jol$Score, list(block2.jol$Condition.Description, block2.jol$Direction), mean, na.rm = T)
 tapply(block2.recall$Score, list(block2.recall$Condition.Description, block2.recall$Direction), mean, na.rm = T)
+
+####Okay, do the main effect of warning####
+anova.data7 = subset(anova.data6,
+                     anova.data6$Block == "2")
+
+model3 = ezANOVA(data = anova.ata7,
+                 wid = Username,
+                 between = .(Condition.Description, Warning),
+                 within = .(Direction, Task),
+                 type = 3,
+                 dv = Score,
+                 detailed = T)
+model3
+
+model3$ANOVA$MSE = model3$ANOVA$SSd/model3$ANOVA$DFd
+model3$ANOVA$MSE
 
