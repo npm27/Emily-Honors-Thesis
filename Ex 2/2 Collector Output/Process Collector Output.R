@@ -16,7 +16,7 @@ setwd('..')
 
 ####Clean up the data####
 ##Drop Unused Columns
-dat = dat[ , c(1, 5, 8, 11:15, 16, 19, 24, 26, 33)]
+dat = dat[ , c(1, 5, 8, 11:15, 16, 19, 24:25, 26, 33)]
 
 #Next, remove buffer trials
 dat = subset(dat,
@@ -113,7 +113,7 @@ setwd('..')
 
 ####Clean up the data####
 ##Drop Unused Columns
-dat = dat[ , c(1, 5, 8, 11:15, 16, 19, 24, 26, 33)]
+dat = dat[ , c(1, 5, 8, 11:15, 16, 19, 24:25, 26, 33)]
 
 #Next, remove buffer trials
 dat = subset(dat,
