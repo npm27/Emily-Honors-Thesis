@@ -651,10 +651,11 @@ ezANOVA(pbic2,
         detailed = T)
 
 #RL
-temp = t.test(RL.JOL2$F, RL.RECALL2$F, paired = T, p.adjust.methods = "Bonferroni")
+temp = t.test(RL.JOL2$U, Read.JOL2$U, paired = F, p.adjust.methods = "Bonferroni")
 p = round(temp$p.value, 3)
 t = temp$statistic
 SEM = (temp$conf.int[2] - temp$conf.int[1]) / 3.92
+temp
 
 mean(RL.JOL2$F)
 mean(RL.RECALL2$F)
